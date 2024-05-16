@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Cleaner
+  - universal
+  - decalcifier
+  - toilet_cleaner
+  - glass_cleaner
   layers:
   - Default
   - TransparentFX
