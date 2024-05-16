@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
+
 
 [RequireComponent(typeof(MeshCollider))]
 
@@ -41,10 +41,10 @@ public class Cleaning : MonoBehaviour {
     private void Update()
     {
         // Check if the left mouse button is pressed using the new Input System
-        if (Mouse.current.leftButton.IsPressed())
+        if (Input.GetMouseButton(0))
         {
             // Get the mouse position from the new Input System and create a ray
-            Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
             // Check if the ray hits an object
