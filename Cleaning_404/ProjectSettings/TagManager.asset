@@ -9,6 +9,7 @@ TagManager:
   - decalcifier
   - toilet_cleaner
   - glass_cleaner
+  - trash
   layers:
   - Default
   - TransparentFX
