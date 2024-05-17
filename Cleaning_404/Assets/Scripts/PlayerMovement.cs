@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
-public class PlayerMovementTutorial : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     public float moveSpeed;
@@ -35,12 +32,23 @@ public class PlayerMovementTutorial : MonoBehaviour
 
     Rigidbody rb;
 
+    [Header("Head Bobbing")]
+    public float bobbingSpeed = 0.18f; // Speed of the bobbing
+    public float bobbingAmount = 0.05f; // Amount of bobbing
+    public float midpoint = 2.0f; // Default camera height
+
+    private float timer = 0.0f;
+    private Transform cameraTransform;
+
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent <Rigidbody> ();
         rb.freezeRotation = true;
 
         readyToJump = true;
+
+        // Assumes the main camera is used for the player's view
+        cameraTransform = Camera.main.transform;
     }
 
     private void Update()
@@ -56,6 +64,9 @@ public class PlayerMovementTutorial : MonoBehaviour
             rb.drag = groundDrag;
         else
             rb.drag = 0;
+
+        // Handle head bobbing
+        HandleHeadBobbing();
     }
 
     private void FixedUpdate()
@@ -72,9 +83,7 @@ public class PlayerMovementTutorial : MonoBehaviour
         if (Input.GetKey(jumpKey) && readyToJump && grounded)
         {
             readyToJump = false;
-
             Jump();
-
             Invoke(nameof(ResetJump), jumpCooldown);
         }
     }
@@ -115,5 +124,34 @@ public class PlayerMovementTutorial : MonoBehaviour
     private void ResetJump()
     {
         readyToJump = true;
+    }
+
+    private void HandleHeadBobbing()
+    {
+        if (Mathf.Abs(horizontalInput) > 0 || Mathf.Abs(verticalInput) > 0)
+        {
+            timer += bobbingSpeed;
+            if (timer > Mathf.PI * 2)
+            {
+                timer -= Mathf.PI * 2;
+            }
+
+            float waveslice = Mathf.Sin(timer);
+            float translateChange = waveslice * bobbingAmount;
+            float totalAxes = Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput);
+            totalAxes = Mathf.Clamp(totalAxes, 0.0f, 1.0f);
+            translateChange *= totalAxes;
+
+            Vector3 localPosition = cameraTransform.localPosition;
+            localPosition.y = midpoint + translateChange;
+            cameraTransform.localPosition = localPosition;
+        }
+        else
+        {
+            timer = 0.0f;
+            Vector3 localPosition = cameraTransform.localPosition;
+            localPosition.y = midpoint;
+            cameraTransform.localPosition = localPosition;
+        }
     }
 }
