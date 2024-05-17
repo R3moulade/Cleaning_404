@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class Sponge : MonoBehaviour
 {
-    public GameObject sponge;
+    public GameObject parentObject;  // Parent object to be assigned in the inspector
+    private GameObject sponge;
 
     private Vector3 spongeStartPos;
     private Vector3 spongeStartRotation;
@@ -10,13 +11,39 @@ public class Sponge : MonoBehaviour
 
     private void Start()
     {
-        spongeStartPos = sponge.transform.position;
-        spongeStartRotation = sponge.transform.eulerAngles;
+        // Ensure the parent object is assigned
+        if (parentObject != null)
+        {
+            // Find the sponge GameObject by tag within the specified parent
+            foreach (Transform child in parentObject.transform)
+            {
+                if (child.CompareTag("sponge"))
+                {
+                    sponge = child.gameObject;
+                    break;
+                }
+            }
+
+            if (sponge != null)
+            {
+                spongeStartPos = sponge.transform.position;
+                spongeStartRotation = sponge.transform.eulerAngles;
+            }
+            else
+            {
+                Debug.Log("No GameObject found with the tag 'sponge' within the specified parent.");
+            }
+        }
+        else
+        {
+            Debug.LogError("Parent object is not assigned.");
+        }
     }
 
     void Update()
     {
-
+        // Ensure the sponge was found before using it in the update logic
+        if (sponge == null) return;
 
         if (Input.GetMouseButton(0))
         {

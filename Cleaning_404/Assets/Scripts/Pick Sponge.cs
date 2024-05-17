@@ -71,5 +71,19 @@ public class SpongeSelector : MonoBehaviour
 
         // Instantiate the new sponge object at the spawn point's position and rotation, and set it as a child of the selected parent GameObject
         currentSponge = Instantiate(newSpongePrefab, spawnPoint.position, spawnPoint.rotation, selectedParent);
+
+        // Remove the BoxCollider component if it exists
+        BoxCollider boxCollider = currentSponge.GetComponent<BoxCollider>();
+        if (boxCollider != null)
+        {
+            Destroy(boxCollider);
+        }
+
+        // Optionally, remove other types of colliders if necessary
+        // Collider collider = currentCleaner.GetComponent<Collider>();
+        // if (collider != null)
+        // {
+        //     Destroy(collider);
+        // }
     }
 }
