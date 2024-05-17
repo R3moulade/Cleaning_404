@@ -25,9 +25,11 @@ public class TrashRemover : MonoBehaviour
         {
             Debug.Log("Hit something!");
 
-            if (Input.GetKeyDown(KeyCode.E))
+             if (hit.collider.CompareTag(trashTag)) {
+                if (Input.GetKeyDown(KeyCode.E))
             {
                  Destroy(hit.collider.gameObject);
+             }
              }
         }
     }
