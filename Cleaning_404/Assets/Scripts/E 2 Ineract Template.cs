@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class E2IneractTemplate : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public string interactTag;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void Update() {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit)) {
+
+            if (hit.collider.CompareTag(interactTag)) {
+                
+                if (Input.GetKeyDown(KeyCode.E)) {
+                    Debug.Log("Works!");
+                 // Whatever needs to happen when you press E! :D
+                }
+
+            }
+        }
     }
 }
