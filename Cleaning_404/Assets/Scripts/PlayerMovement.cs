@@ -5,7 +5,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     public float moveSpeed;
 
-    public float groundDrag;
+    public float groundDrag = 6f;
 
     public float jumpForce;
     public float jumpCooldown;
@@ -33,8 +33,8 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rb;
 
     [Header("Head Bobbing")]
-    public float bobbingSpeed = 0.18f; // Speed of the bobbing
-    public float bobbingAmount = 0.05f; // Amount of bobbing
+    public float bobbingSpeed = 0.5f; // Speed of the bobbing
+    public float bobbingAmount = 0.02f; // Amount of bobbing
     public float midpoint = 2.0f; // Default camera height
 
     private float timer = 0.0f;
