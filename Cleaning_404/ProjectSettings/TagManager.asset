@@ -11,6 +11,8 @@ TagManager:
   - glass_cleaner
   - sponge
   - rag
+  - trash
+  - interactive
   layers:
   - Default
   - TransparentFX
