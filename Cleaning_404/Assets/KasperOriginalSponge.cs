@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Stuff : MonoBehaviour
+public class KasperOriginalSponge: MonoBehaviour
 {
     public GameObject sponge;
 
