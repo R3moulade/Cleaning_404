@@ -1,10 +1,8 @@
 using UnityEngine;
 
 [RequireComponent(typeof(MeshCollider))]
-
 public class Cleaning : MonoBehaviour
 {
-
     [Header("Textures")]
     [Tooltip("The base texture of the object. Overrides the currently applied textures on the material.")]
     [SerializeField] private Texture2D baseTexture;
@@ -19,6 +17,9 @@ public class Cleaning : MonoBehaviour
     [SerializeField] private int brushWidth = 380; // New variable for rectangle width
     [SerializeField] private int brushHeight = 250; // New variable for rectangle height
 
+    [Header("Parent Settings")]
+    [Tooltip("The parent object that must have the 'Sponge' tag to allow drawing.")]
+    [SerializeField] private Transform spongeParent;
 
     private Material myMaterial;
     private Texture2D appliedMaskTexture;
@@ -26,10 +27,14 @@ public class Cleaning : MonoBehaviour
     private int totalPixelCount;
     private int blackPixelCount;
 
-
-
     private void Awake()
     {
+        if (spongeParent == null)
+        {
+            Debug.LogError("Sponge Parent is not assigned in the inspector!");
+            return;
+        }
+
         // Create new local material to prevent changes to the original material, based on the material of the object
         myMaterial = new Material(GetComponent<MeshRenderer>().material);
         myMaterial.name = "CleaningMaterial_" + gameObject.name;
@@ -53,33 +58,55 @@ public class Cleaning : MonoBehaviour
 
     private void Update()
     {
-        // Check if the left mouse button is pressed using the new Input System
+        // Check if the left mouse button is pressed
         if (Input.GetMouseButton(0))
         {
-            // Get the mouse position from the new Input System and create a ray
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            // Check if the ray hits an object
-            if (Physics.Raycast(ray, out hit))
+            // Check if the assigned parent object has the "Sponge" tag
+            if (spongeParent != null && spongeParent.CompareTag("sponge"))
             {
-                // Get the mesh collider of the object (important for UV coordinates)
-                MeshCollider meshCollider = hit.collider as MeshCollider;
+                // Get the mouse position and create a ray
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
 
-                // Return if the mesh collider
-                if (meshCollider == null || meshCollider.sharedMesh == null)
-                    return;
+                // Check if the ray hits this object
+                if (Physics.Raycast(ray, out hit) && hit.collider.gameObject == gameObject)
+                {
+                    // Get the mesh collider of the object (important for UV coordinates)
+                    MeshCollider meshCollider = hit.collider as MeshCollider;
 
-                // Get the UV coordinates at the hit point
-                Vector2 texCoord = hit.textureCoord;
-                Debug.Log("UV Coordinates at cursor: " + texCoord);
+                    // Return if the mesh collider is null or does not have a shared mesh
+                    if (meshCollider == null || meshCollider.sharedMesh == null)
+                    {
+                        Debug.LogWarning("MeshCollider is missing or does not have a shared mesh.");
+                        return;
+                    }
 
-                // Draw on the mask texture
-                DrawOnMask(texCoord);
+                    // Get the UV coordinates at the hit point
+                    Vector2 texCoord = hit.textureCoord;
+                    Debug.Log("UV Coordinates at cursor: " + texCoord);
 
-                // Calculate the percentage of black pixels
-                float blackPercentage = CalculateBlackPercentage();
-                Debug.Log("Black percentage: " + blackPercentage + "%");
+                    // Draw on the mask texture
+                    DrawOnMask(texCoord);
+
+                    // Calculate the percentage of black pixels
+                    float blackPercentage = CalculateBlackPercentage();
+                    Debug.Log("Black percentage: " + blackPercentage + "%");
+
+                    // Remove the "dirty_surface" tag if the black percentage is 100%
+                    if (blackPercentage >= 95)
+                    {
+                        gameObject.tag = "Untagged";
+                        Debug.Log("Cleaning complete. 'dirty_surface' tag removed.");
+                    }
+                }
+                else
+                {
+                    Debug.Log("Raycast did not hit the correct object.");
+                }
+            }
+            else
+            {
+                Debug.Log("Sponge Parent does not have the 'Sponge' tag.");
             }
         }
     }
@@ -107,10 +134,6 @@ public class Cleaning : MonoBehaviour
                 // Check if the pixel is not already black
                 if (appliedMaskTexture.GetPixel(appliedX, appliedY) != Color.black)
                 {
-
-
-
-
                     if (brushType == BrushType.Circle)
                     {
                         // Calculate the distance from the center of the circle
@@ -132,9 +155,6 @@ public class Cleaning : MonoBehaviour
                     }
                 }
             }
-
-
-
         }
 
         // Apply changes to the texture
@@ -170,8 +190,7 @@ public class Cleaning : MonoBehaviour
         return blackPercentageInt;
     }
 
-
-    Texture2D CopyTexture(Texture2D source)
+    private Texture2D CopyTexture(Texture2D source)
     {
         // Create a new texture
         Texture2D newTexture = new Texture2D(source.width, source.height);

@@ -21,7 +21,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Mold 2
-  m_Shader: {fileID: -6465566751694194690, guid: f737269497ac86b42849a1087e3b785a, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: f737269497ac86b42849a1087e3b785a,
+    type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -69,7 +70,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: a4317cc5c011a3d40850dfa8fbc51af8, type: 3}
+        m_Texture: {fileID: 2800000, guid: 113322ac18679c14f9eb1bab4203bdfe, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
