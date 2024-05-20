@@ -2,48 +2,41 @@ using UnityEngine;
 
 public class Sponge : MonoBehaviour
 {
-    public GameObject parentObject;  // Parent object to be assigned in the inspector
+    public GameObject parentObject;
     private GameObject sponge;
 
     private Vector3 spongeStartPos;
     private Vector3 spongeStartRotation;
     public LayerMask layerMask;
 
+    private bool isSpongeChildFound = false;
+
     private void Start()
     {
-        // Ensure the parent object is assigned
-        if (parentObject != null)
+        // Check if the parent object has a child with the tag "sponge"
+        foreach (Transform child in parentObject.transform)
         {
-            // Find the sponge GameObject by tag within the specified parent
-            foreach (Transform child in parentObject.transform)
+            if (child.CompareTag("sponge"))
             {
-                if (child.CompareTag("sponge"))
-                {
-                    sponge = child.gameObject;
-                    break;
-                }
-            }
-
-            if (sponge != null)
-            {
-                spongeStartPos = sponge.transform.position;
-                spongeStartRotation = sponge.transform.eulerAngles;
-            }
-            else
-            {
-                Debug.Log("No GameObject found with the tag 'sponge' within the specified parent.");
+                sponge = child.gameObject;
+                isSpongeChildFound = true;
+                break;
             }
         }
-        else
+
+        // If the sponge child is found, initialize its start position and rotation
+        if (isSpongeChildFound)
         {
-            Debug.LogError("Parent object is not assigned.");
+            spongeStartPos = sponge.transform.position;
+            spongeStartRotation = sponge.transform.eulerAngles;
         }
     }
 
     void Update()
     {
-        // Ensure the sponge was found before using it in the update logic
-        if (sponge == null) return;
+        // Only proceed if the sponge child is found
+        if (!isSpongeChildFound)
+            return;
 
         if (Input.GetMouseButton(0))
         {
@@ -59,7 +52,6 @@ public class Sponge : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-            sponge.transform.parent = Camera.main.transform;
             sponge.transform.position = spongeStartPos;
             sponge.transform.eulerAngles = spongeStartRotation;
         }

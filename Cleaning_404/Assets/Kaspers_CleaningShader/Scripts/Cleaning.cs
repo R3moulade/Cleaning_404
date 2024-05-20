@@ -1,9 +1,9 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(MeshCollider))]
 
-public class Cleaning : MonoBehaviour {
+public class Cleaning : MonoBehaviour
+{
 
     [Header("Textures")]
     [Tooltip("The base texture of the object. Overrides the currently applied textures on the material.")]
@@ -13,11 +13,20 @@ public class Cleaning : MonoBehaviour {
 
     [Header("Brush Settings")]
     [Tooltip("The type and size of brush to use for drawing on the mask texture.")]
-    [SerializeField] private BrushType brushType = BrushType.Circle;
+    [SerializeField] private BrushType brushType = BrushType.Rectangle;
+
     [SerializeField] private int brushSize = 100;
+    [SerializeField] private int brushWidth = 380; // New variable for rectangle width
+    [SerializeField] private int brushHeight = 250; // New variable for rectangle height
+
 
     private Material myMaterial;
     private Texture2D appliedMaskTexture;
+
+    private int totalPixelCount;
+    private int blackPixelCount;
+
+
 
     private void Awake()
     {
@@ -36,15 +45,19 @@ public class Cleaning : MonoBehaviour {
 
         // Set the material to the object
         GetComponent<MeshRenderer>().material = myMaterial;
+
+        // Initialize the total pixel count and the black pixel count
+        totalPixelCount = appliedMaskTexture.width * appliedMaskTexture.height;
+        blackPixelCount = CalculateBlackPixelCount();
     }
 
     private void Update()
     {
         // Check if the left mouse button is pressed using the new Input System
-        if (Mouse.current.leftButton.IsPressed())
+        if (Input.GetMouseButton(0))
         {
             // Get the mouse position from the new Input System and create a ray
-            Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
             // Check if the ray hits an object
@@ -63,48 +76,98 @@ public class Cleaning : MonoBehaviour {
 
                 // Draw on the mask texture
                 DrawOnMask(texCoord);
+
+                // Calculate the percentage of black pixels
+                float blackPercentage = CalculateBlackPercentage();
+                Debug.Log("Black percentage: " + blackPercentage + "%");
             }
-        }  
+        }
     }
 
     private void DrawOnMask(Vector2 uv)
     {
         // Define the size of the brush
         int size = brushSize / 2;
+        int halfWidth = brushWidth / 2; // Half of rectangle width
+        int halfHeight = brushHeight / 2; // Half of rectangle height
 
         // Get the pixel coordinates from the UV coordinates
         int x = (int)(appliedMaskTexture.width * uv.x);
         int y = (int)(appliedMaskTexture.height * uv.y);
- 
+
         // Draw on the mask texture based on the brush type
-        for (int i = -size; i < size; i++)
+        for (int i = -halfWidth; i < halfWidth; i++)
         {
-            for (int j = -size; j < size; j++)
+            for (int j = -halfHeight; j < halfHeight; j++)
             {
                 // Use modulo to prevent out of bounds errors
                 int appliedX = (x + i) % appliedMaskTexture.width;
                 int appliedY = (y + j) % appliedMaskTexture.height;
 
-                if (brushType == BrushType.Circle)
+                // Check if the pixel is not already black
+                if (appliedMaskTexture.GetPixel(appliedX, appliedY) != Color.black)
                 {
-                    // Calculate the distance from the center of the circle
-                    float distance = Mathf.Sqrt(i * i + j * j);
 
-                    // Check if the pixel is within the circle
-                    if (distance <= size)
+
+
+
+                    if (brushType == BrushType.Circle)
                     {
+                        // Calculate the distance from the center of the circle
+                        float distance = Mathf.Sqrt(i * i + j * j);
+
+                        // Check if the pixel is within the circle
+                        if (distance <= size)
+                        {
+                            // Draw a black pixel and increment the black pixel count
+                            appliedMaskTexture.SetPixel(appliedX, appliedY, Color.black);
+                            blackPixelCount++;
+                        }
+                    }
+                    else if (brushType == BrushType.Square || brushType == BrushType.Rectangle)
+                    {
+                        // Draw a black pixel and increment the black pixel count
                         appliedMaskTexture.SetPixel(appliedX, appliedY, Color.black);
+                        blackPixelCount++;
                     }
                 }
-                else if(brushType == BrushType.Square)
-                {
-                    appliedMaskTexture.SetPixel(appliedX, appliedY, Color.black);
-                }
             }
+
+
+
         }
-        
+
         // Apply changes to the texture
         appliedMaskTexture.Apply();
+    }
+
+    private int CalculateBlackPixelCount()
+    {
+        // Get all pixels from the texture
+        Color[] pixels = appliedMaskTexture.GetPixels();
+
+        // Count the number of black pixels
+        int blackPixelCount = 0;
+        foreach (Color pixel in pixels)
+        {
+            if (pixel == Color.black)
+            {
+                blackPixelCount++;
+            }
+        }
+
+        return blackPixelCount;
+    }
+
+    private int CalculateBlackPercentage()
+    {
+        // Calculate the percentage of black pixels
+        float blackPercentage = (float)blackPixelCount / totalPixelCount * 100;
+
+        // Cast the float to an int
+        int blackPercentageInt = (int)blackPercentage;
+
+        return blackPercentageInt;
     }
 
 
@@ -129,6 +192,7 @@ public class Cleaning : MonoBehaviour {
     private enum BrushType
     {
         Square,
-        Circle
+        Circle,
+        Rectangle
     }
 }
