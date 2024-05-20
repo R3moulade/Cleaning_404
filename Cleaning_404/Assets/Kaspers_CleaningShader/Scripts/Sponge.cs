@@ -2,49 +2,34 @@ using UnityEngine;
 
 public class Sponge : MonoBehaviour
 {
-    public GameObject parentObject;
-    private GameObject sponge;
+    // Reference to the existing sponge object in the scene
+    public GameObject sponge;
 
-    private Vector3 spongeStartPos;
-    private Vector3 spongeStartRotation;
+    [Header("Player's Left Hand Marker")]
+    public Transform leftHandMarker;
+
     public LayerMask layerMask;
 
-    private bool isSpongeChildFound = false;
+    private Vector3 initialLocalPosition;
+    private Quaternion initialLocalRotation;
 
     private void Start()
     {
-        // Check if the parent object has a child with the tag "sponge"
-        foreach (Transform child in parentObject.transform)
-        {
-            if (child.CompareTag("sponge"))
-            {
-                sponge = child.gameObject;
-                isSpongeChildFound = true;
-                break;
-            }
-        }
-
-        // If the sponge child is found, initialize its start position and rotation
-        if (isSpongeChildFound)
-        {
-            spongeStartPos = sponge.transform.position;
-            spongeStartRotation = sponge.transform.eulerAngles;
-        }
+        // Store the initial local position and rotation of the sponge relative to the left hand marker
+        initialLocalPosition = sponge.transform.localPosition;
+        initialLocalRotation = sponge.transform.localRotation;
     }
 
     void Update()
     {
-        // Only proceed if the sponge child is found
-        if (!isSpongeChildFound)
-            return;
-
         if (Input.GetMouseButton(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100f, layerMask))
             {
-                sponge.transform.parent = null;
+                // Move and rotate the existing sponge object to the hit point and normal
+                sponge.transform.parent = null; // Unparent the sponge
                 sponge.transform.position = hit.point;
                 sponge.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
             }
@@ -52,8 +37,12 @@ public class Sponge : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-            sponge.transform.position = spongeStartPos;
-            sponge.transform.eulerAngles = spongeStartRotation;
+            // Set the sponge's parent back to the left hand marker
+            sponge.transform.parent = leftHandMarker;
+
+            // Reset the local position and rotation of the sponge relative to the left hand marker
+            sponge.transform.localPosition = initialLocalPosition;
+            sponge.transform.localRotation = initialLocalRotation;
         }
     }
 }
