@@ -253,9 +253,11 @@ GameObject:
   - component: {fileID: 75700872}
   - component: {fileID: 75700871}
   - component: {fileID: 75700870}
+  - component: {fileID: 75700875}
+  - component: {fileID: 75700874}
   m_Layer: 0
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: dirt_surface
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -301,7 +303,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 0f19f024e5e88474da4e1c1cf0b5f04c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -346,6 +348,47 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &75700874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75700869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 620645ba068ece5458b97d29799ecd23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseTexture: {fileID: 2800000, guid: a4317cc5c011a3d40850dfa8fbc51af8, type: 3}
+  dirtTexture: {fileID: 2800000, guid: a18cc9e1efc35e94c9c9a755fe5ab49d, type: 3}
+  maskTexture: {fileID: 2800000, guid: 7a408e9a5f261c84a9d30d15e7c957ef, type: 3}
+  brushType: 2
+  brushSize: 100
+  brushWidth: 380
+  brushHeight: 250
+--- !u!64 &75700875
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75700869}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &168500442
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -772,9 +815,11 @@ GameObject:
   - component: {fileID: 1107962748}
   - component: {fileID: 1107962747}
   - component: {fileID: 1107962746}
+  - component: {fileID: 1107962751}
+  - component: {fileID: 1107962750}
   m_Layer: 0
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: dirt_surface
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -820,7 +865,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b2a3e082daf9d454094acd8ad6d4024c, type: 2}
+  - {fileID: 2100000, guid: 1499d144638f09846ab9daebf6c0368d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -865,6 +910,47 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1107962750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1107962745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 620645ba068ece5458b97d29799ecd23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseTexture: {fileID: 2800000, guid: 2df3747251dc5f945b5f694c7c764c8e, type: 3}
+  dirtTexture: {fileID: 2800000, guid: 065269adec339704d9558237107620f5, type: 3}
+  maskTexture: {fileID: 2800000, guid: 7a408e9a5f261c84a9d30d15e7c957ef, type: 3}
+  brushType: 2
+  brushSize: 100
+  brushWidth: 380
+  brushHeight: 250
+--- !u!64 &1107962751
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1107962745}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &1216520168
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1030,12 +1116,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: c56ad9a6d021e594198e429db6545d6b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.12000036
+      value: 0.1200003
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c56ad9a6d021e594198e429db6545d6b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.8400002
+      value: 4.76
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c56ad9a6d021e594198e429db6545d6b,
         type: 3}
@@ -1288,7 +1374,7 @@ GameObject:
   - component: {fileID: 1869881520}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: dirt_surface
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1334,7 +1420,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: f737269497ac86b42849a1087e3b785a, type: 3}
+  - {fileID: 2100000, guid: 845c469272085d14b91f4e03aae08ce3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1391,8 +1477,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 620645ba068ece5458b97d29799ecd23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseTexture: {fileID: 2800000, guid: db84f4b0df412d441bf6836f909666a3, type: 3}
-  dirtTexture: {fileID: 2800000, guid: 29c3049daa96f314881bf8722b914b55, type: 3}
+  baseTexture: {fileID: 2800000, guid: a4317cc5c011a3d40850dfa8fbc51af8, type: 3}
+  dirtTexture: {fileID: 2800000, guid: 48b80924aca09814caa44c91e9b6f003, type: 3}
   maskTexture: {fileID: 2800000, guid: 7a408e9a5f261c84a9d30d15e7c957ef, type: 3}
   brushType: 2
   brushSize: 100
@@ -1432,9 +1518,11 @@ GameObject:
   - component: {fileID: 1879876834}
   - component: {fileID: 1879876833}
   - component: {fileID: 1879876832}
+  - component: {fileID: 1879876837}
+  - component: {fileID: 1879876836}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: dirt_surface
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1480,7 +1568,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 60d230864e378db46af5067b161370d2, type: 2}
+  - {fileID: 2100000, guid: adb27a80b53c4604f93c9cffb8ec4f3a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1525,6 +1613,47 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1879876836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879876831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 620645ba068ece5458b97d29799ecd23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseTexture: {fileID: 2800000, guid: a4317cc5c011a3d40850dfa8fbc51af8, type: 3}
+  dirtTexture: {fileID: 2800000, guid: 6744fbb4e1e59334982da8801d8cbfe2, type: 3}
+  maskTexture: {fileID: 2800000, guid: 7a408e9a5f261c84a9d30d15e7c957ef, type: 3}
+  brushType: 2
+  brushSize: 100
+  brushWidth: 380
+  brushHeight: 250
+--- !u!64 &1879876837
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879876831}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &2944512363164002696
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1558,6 +1687,11 @@ PrefabInstance:
       propertyPath: cleanerPrefabs.Array.data[3]
       value: 
       objectReference: {fileID: 998797902}
+    - target: {fileID: 2436003738454040947, guid: 671e643b823e6e84bb2bc6a33dd51621,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3389213731059807534, guid: 671e643b823e6e84bb2bc6a33dd51621,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1740,10 +1874,10 @@ SceneRoots:
   - {fileID: 2944512363164002696}
   - {fileID: 8023648137910926569}
   - {fileID: 998797901}
-  - {fileID: 1357627855}
   - {fileID: 1586099252}
   - {fileID: 168500442}
   - {fileID: 1216520168}
+  - {fileID: 1357627855}
   - {fileID: 414161645}
   - {fileID: 1869881519}
   - {fileID: 75700873}
