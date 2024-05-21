@@ -48,7 +48,7 @@ public class Cleaning : MonoBehaviour {
 
         // Initialize the total pixel count and the black pixel count
         totalPixelCount = appliedMaskTexture.width * appliedMaskTexture.height;
-        blackPixelCount = CalculateBlackPixelCount();
+        blackPixelCount = 0;
     }
 
     private void Update()
@@ -63,6 +63,12 @@ public class Cleaning : MonoBehaviour {
             // Check if the ray hits an object
             if (Physics.Raycast(ray, out hit))
             {
+
+                if(hit.collider.gameObject != gameObject)
+                {
+                    return;
+                }
+                
                 // Get the mesh collider of the object (important for UV coordinates)
                 MeshCollider meshCollider = hit.collider as MeshCollider;
 
@@ -77,9 +83,6 @@ public class Cleaning : MonoBehaviour {
                 // Draw on the mask texture
                 DrawOnMask(texCoord);
 
-                // Calculate the percentage of black pixels
-                float blackPercentage = CalculateBlackPercentage();
-                Debug.Log("Black percentage: " + blackPercentage + "%");
             }
         }  
     }
@@ -132,35 +135,6 @@ private void DrawOnMask(Vector2 uv)
     
     // Apply changes to the texture
     appliedMaskTexture.Apply();
-}
-
-private int CalculateBlackPixelCount()
-{
-    // Get all pixels from the texture
-    Color[] pixels = appliedMaskTexture.GetPixels();
-
-    // Count the number of black pixels
-    int blackPixelCount = 0;
-    foreach (Color pixel in pixels)
-    {
-        if (pixel == Color.black)
-        {
-            blackPixelCount++;
-        }
-    }
-
-    return blackPixelCount;
-}
-
-private int CalculateBlackPercentage()
-{
-    // Calculate the percentage of black pixels
-    float blackPercentage = (float)blackPixelCount / totalPixelCount * 100;
-
-    // Cast the float to an int
-    int blackPercentageInt = (int)blackPercentage;
-
-    return blackPercentageInt;
 }
 
 
