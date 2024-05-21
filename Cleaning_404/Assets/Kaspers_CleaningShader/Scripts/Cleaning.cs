@@ -138,7 +138,6 @@ private void DrawOnMask(Vector2 uv)
 }
 
 
-
     Texture2D CopyTexture(Texture2D source)
     {
         // Create a new texture
