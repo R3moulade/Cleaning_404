@@ -10,6 +10,11 @@ public class GameManager : MonoBehaviour
 
     void Update() {
         int count = CountDirt(checkDirt);
+
+
+        if (count == 0) {
+            Debug.Log("Wahoo");
+        }
     }
 
     private void Awake() {
