@@ -135,7 +135,10 @@ private void DrawOnMask(Vector2 uv)
     
     // Apply changes to the texture
     appliedMaskTexture.Apply();
+    int percentage = (int)(((float)blackPixelCount / totalPixelCount) * 100);
+    Debug.Log("Black Pixel Count: " + percentage + "%");
 }
+
 
 
     Texture2D CopyTexture(Texture2D source)
