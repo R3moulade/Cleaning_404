@@ -13,6 +13,8 @@ TagManager:
   - rag
   - trash
   - interactive
+  - dirty
+  - clean
   layers:
   - Default
   - TransparentFX

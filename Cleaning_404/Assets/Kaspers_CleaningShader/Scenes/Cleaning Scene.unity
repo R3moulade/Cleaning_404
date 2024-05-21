@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 74528133}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: dirty
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -267,6 +267,7 @@ MonoBehaviour:
   baseTexture: {fileID: 2800000, guid: db84f4b0df412d441bf6836f909666a3, type: 3}
   dirtTexture: {fileID: 2800000, guid: 29c3049daa96f314881bf8722b914b55, type: 3}
   maskTexture: {fileID: 2800000, guid: 7a408e9a5f261c84a9d30d15e7c957ef, type: 3}
+  maxPercentage: 95
   brushType: 1
   brushSize: 90
   brushWidth: 90
@@ -774,7 +775,7 @@ GameObject:
   - component: {fileID: 1280525853}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: dirty
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -794,6 +795,7 @@ MonoBehaviour:
   baseTexture: {fileID: 2800000, guid: b57fa53514912b0488b747201b885a5d, type: 3}
   dirtTexture: {fileID: 2800000, guid: b87808e3e2551454e913380723e78d84, type: 3}
   maskTexture: {fileID: 2800000, guid: 4dd130e0299af2e4296a5c8329dea275, type: 3}
+  maxPercentage: 95
   brushType: 2
   brushSize: 250
   brushWidth: 380
@@ -1484,7 +1486,7 @@ GameObject:
   - component: {fileID: 8276893987049104520}
   m_Layer: 0
   m_Name: Toilet
-  m_TagString: Untagged
+  m_TagString: dirty
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2619,6 +2621,7 @@ MonoBehaviour:
   baseTexture: {fileID: 2800000, guid: db84f4b0df412d441bf6836f909666a3, type: 3}
   dirtTexture: {fileID: 2800000, guid: 29c3049daa96f314881bf8722b914b55, type: 3}
   maskTexture: {fileID: 2800000, guid: 7a408e9a5f261c84a9d30d15e7c957ef, type: 3}
+  maxPercentage: 30
   brushType: 2
   brushSize: 100
   brushWidth: 100
