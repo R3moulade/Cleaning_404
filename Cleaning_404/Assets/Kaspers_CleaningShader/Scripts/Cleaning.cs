@@ -10,6 +10,7 @@ public class Cleaning : MonoBehaviour {
     [SerializeField] private Texture2D baseTexture;
     [SerializeField] private Texture2D dirtTexture;
     [SerializeField] private Texture2D maskTexture;
+    [SerializeField] private int maxPercentage = 95;
 
     [Header("Brush Settings")]
     [Tooltip("The type and size of brush to use for drawing on the mask texture.")]
@@ -25,6 +26,7 @@ public class Cleaning : MonoBehaviour {
 
     private int totalPixelCount;
     private int blackPixelCount;
+
 
     
 
@@ -135,12 +137,15 @@ private void DrawOnMask(Vector2 uv)
     
     // Apply changes to the texture
     appliedMaskTexture.Apply();
-    int percentage = (int)(((float)blackPixelCount / totalPixelCount) * 100);
-    Debug.Log("Black Pixel Count: " + percentage + "%");
+    int cleanPercentage = (int)(((float)blackPixelCount / totalPixelCount) * 100);
+    Debug.Log("Black Pixel Count: " + cleanPercentage + "%");
+
+    if (cleanPercentage >= maxPercentage)
+    {
+        CleanedObject();
+    }
+
 }
-
-
-
     Texture2D CopyTexture(Texture2D source)
     {
         // Create a new texture
@@ -164,5 +169,10 @@ private void DrawOnMask(Vector2 uv)
         Square,
         Circle,
         Rectangle
+    }
+    private void CleanedObject()
+    {
+        gameObject.tag = "clean";
+        Debug.Log("Cleaning completed on " + gameObject.name);
     }
 }

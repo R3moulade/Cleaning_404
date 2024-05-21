@@ -13,7 +13,8 @@ TagManager:
   - rag
   - trash
   - interactive
-  - dirt_surface
+  - dirty
+  - clean
   layers:
   - Default
   - TransparentFX
@@ -24,29 +25,6 @@ TagManager:
   - whatIsGround
   - whatIsPlayer
   - CursorLayer
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
   m_SortingLayers:
   - name: Default
     uniqueID: 0
