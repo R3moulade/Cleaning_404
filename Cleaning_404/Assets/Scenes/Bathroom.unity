@@ -1811,7 +1811,7 @@ GameObject:
   - component: {fileID: 589407461}
   m_Layer: 0
   m_Name: blood
-  m_TagString: Untagged
+  m_TagString: interactive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2077,7 +2077,7 @@ GameObject:
   - component: {fileID: 7574510873526873824}
   m_Layer: 0
   m_Name: cabinet_door
-  m_TagString: interactive
+  m_TagString: dirty
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2138,7 +2138,7 @@ GameObject:
   - component: {fileID: 1464410768350173795}
   m_Layer: 0
   m_Name: Towel_Rack
-  m_TagString: Untagged
+  m_TagString: dirty
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2157,7 +2157,7 @@ GameObject:
   - component: {fileID: 8241509028220226162}
   m_Layer: 0
   m_Name: Toilet
-  m_TagString: Untagged
+  m_TagString: dirty
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2419,9 +2419,10 @@ GameObject:
   - component: {fileID: 3044966921776296614}
   - component: {fileID: 2588259712810487327}
   - component: {fileID: 3136918241516521264}
+  - component: {fileID: 3136918241516521265}
   m_Layer: 0
   m_Name: Vanity
-  m_TagString: Untagged
+  m_TagString: dirty
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2448,6 +2449,26 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -457628665132369796, guid: b0b6848550c31d64982facb6bc8bb49d, type: 3}
+--- !u!114 &3136918241516521265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3136918241516521263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 620645ba068ece5458b97d29799ecd23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseTexture: {fileID: 0}
+  dirtTexture: {fileID: 0}
+  maskTexture: {fileID: 2800000, guid: 7a408e9a5f261c84a9d30d15e7c957ef, type: 3}
+  maxPercentage: 95
+  brushType: 2
+  brushSize: 100
+  brushWidth: 100
+  brushHeight: 50
 --- !u!1 &3141162215940886951
 GameObject:
   m_ObjectHideFlags: 0
@@ -2714,7 +2735,7 @@ GameObject:
   - component: {fileID: 8120930347374343771}
   m_Layer: 0
   m_Name: Garbage
-  m_TagString: Untagged
+  m_TagString: trash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2892,7 +2913,7 @@ GameObject:
   - component: {fileID: 929726132421610898}
   m_Layer: 0
   m_Name: BathroomRoom
-  m_TagString: Untagged
+  m_TagString: dirty
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3053,7 +3074,7 @@ GameObject:
   - component: {fileID: 7583213238736569904}
   m_Layer: 0
   m_Name: QTips
-  m_TagString: Untagged
+  m_TagString: trash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3355,7 +3376,7 @@ GameObject:
   - component: {fileID: 8093904995425725673}
   m_Layer: 0
   m_Name: Mirror
-  m_TagString: Untagged
+  m_TagString: dirty
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3528,7 +3549,7 @@ GameObject:
   - component: {fileID: 4134379060795815614}
   m_Layer: 0
   m_Name: Shower
-  m_TagString: Untagged
+  m_TagString: dirty
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3599,7 +3620,7 @@ GameObject:
   - component: {fileID: 8899438169396399984}
   m_Layer: 0
   m_Name: Tshirt
-  m_TagString: Untagged
+  m_TagString: trash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
