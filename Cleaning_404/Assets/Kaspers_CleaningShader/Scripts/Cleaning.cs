@@ -77,31 +77,33 @@ public class Cleaning : MonoBehaviour
                     // Return if the mesh collider is null or does not have a shared mesh
                     if (meshCollider == null || meshCollider.sharedMesh == null)
                     {
-                        Debug.LogWarning("MeshCollider is missing or does not have a shared mesh.");
+                        //Debug.LogWarning("MeshCollider is missing or does not have a shared mesh.");
                         return;
                     }
 
                     // Get the UV coordinates at the hit point
                     Vector2 texCoord = hit.textureCoord;
-                    Debug.Log("UV Coordinates at cursor: " + texCoord);
 
                     // Draw on the mask texture
                     DrawOnMask(texCoord);
 
                     // Calculate the percentage of black pixels
                     float blackPercentage = CalculateBlackPercentage();
-                    Debug.Log("Black percentage: " + blackPercentage + "%");
+                    
 
                     // Remove the "dirty_surface" tag if the black percentage is 100%
                     if (blackPercentage >= 95)
                     {
-                        gameObject.tag = "Untagged";
+                        gameObject.tag = "Clean";
+                        Debug.Log("Black percentage: " + blackPercentage + "%");
+
+                        //Debug.Log("UV Coordinates at cursor: " + texCoord);
                         Debug.Log("Cleaning complete. 'dirty_surface' tag removed.");
                     }
                 }
                 else
                 {
-                    Debug.Log("Raycast did not hit the correct object.");
+                    //Debug.Log("Raycast did not hit the correct object.");
                 }
             }
             else
