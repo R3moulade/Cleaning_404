@@ -1,23 +1,21 @@
 using UnityEngine;
 
-public class Stuff : MonoBehaviour
+public class SpongeMechanic : MonoBehaviour
 {
     public GameObject sponge;
 
-    private Vector3 spongeStartPos;
-    private Vector3 spongeStartRotation;
+    private Vector3 spongeStartLocalPos;
+    private Vector3 spongeStartLocalRotation;
     public LayerMask layerMask;
 
     private void Start()
     {
-        spongeStartPos = sponge.transform.position;
-        spongeStartRotation = sponge.transform.eulerAngles;
+        spongeStartLocalPos = sponge.transform.localPosition;
+        spongeStartLocalRotation = sponge.transform.localEulerAngles;
     }
 
     void Update()
     {
-
-
         if (Input.GetMouseButton(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -33,8 +31,8 @@ public class Stuff : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             sponge.transform.parent = Camera.main.transform;
-            sponge.transform.position = spongeStartPos;
-            sponge.transform.eulerAngles = spongeStartRotation;
+            sponge.transform.localPosition = spongeStartLocalPos;
+            sponge.transform.localEulerAngles = spongeStartLocalRotation;
         }
     }
 }
