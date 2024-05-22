@@ -521,7 +521,7 @@ PrefabInstance:
     - target: {fileID: 5070911536404280744, guid: 671e643b823e6e84bb2bc6a33dd51621,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.9
+      value: -1.05
       objectReference: {fileID: 0}
     - target: {fileID: 5070911536404280744, guid: 671e643b823e6e84bb2bc6a33dd51621,
         type: 3}
@@ -552,6 +552,11 @@ PrefabInstance:
         type: 3}
       propertyPath: jumpForce
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6923450849274649524, guid: 671e643b823e6e84bb2bc6a33dd51621,
+        type: 3}
+      propertyPath: playerHeight
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5083801574016996872, guid: 671e643b823e6e84bb2bc6a33dd51621, type: 3}
@@ -897,7 +902,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1613,7 +1618,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1983,7 +1988,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -2626,7 +2631,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -2700,7 +2705,6 @@ GameObject:
   - component: {fileID: 1250807229}
   - component: {fileID: 1250807234}
   - component: {fileID: 1250807233}
-  - component: {fileID: 1250807232}
   m_Layer: 0
   m_Name: tile5
   m_TagString: dirty
@@ -2794,27 +2798,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1250807227}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1250807232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1250807227}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 620645ba068ece5458b97d29799ecd23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseTexture: {fileID: 0}
-  dirtTexture: {fileID: 0}
-  maskTexture: {fileID: 0}
-  maskTextureCleaned: {fileID: 0}
-  maxPercentage: 95
-  brushType: 2
-  brushSize: 100
-  brushWidth: 100
-  brushHeight: 50
 --- !u!114 &1250807233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3275,7 +3258,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -3538,7 +3521,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -4489,7 +4472,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -5338,10 +5321,10 @@ GameObject:
   - component: {fileID: 3908386076961016486}
   - component: {fileID: 3119614430696988290}
   - component: {fileID: 7982939150293067710}
-  - component: {fileID: 7982939150293067711}
+  - component: {fileID: 7982939150293067712}
   m_Layer: 0
   m_Name: Shelf 1.004
-  m_TagString: Untagged
+  m_TagString: dirty
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5467,7 +5450,7 @@ MeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: 04898c5a04f19894cb50f4debc9f57a4, type: 2}
   - {fileID: 2100000, guid: aa7d8bdb51fa2a141a103ca5e17502c3, type: 2}
-  - {fileID: -876546973899608171, guid: f737269497ac86b42849a1087e3b785a, type: 3}
+  - {fileID: 2100000, guid: 64772b013f4ea314898a08e1bebb9aeb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5672,8 +5655,6 @@ GameObject:
   - component: {fileID: 4197556873307132330}
   - component: {fileID: 6218099524691743271}
   - component: {fileID: 3780227077465144610}
-  - component: {fileID: 6218099524691743272}
-  - component: {fileID: 6218099524691743273}
   m_Layer: 0
   m_Name: Toilet Paper Holder
   m_TagString: Untagged
@@ -5701,7 +5682,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8274133419916619345, guid: b0b6848550c31d64982facb6bc8bb49d, type: 3}
+  - {fileID: 2100000, guid: b543de881e26d0c4ca4a99096d3e37f6, type: 2}
   - {fileID: 9185737683893222716, guid: b0b6848550c31d64982facb6bc8bb49d, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -5857,49 +5838,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5124989360840211050}
   m_Mesh: {fileID: -6563985009384706440, guid: b0b6848550c31d64982facb6bc8bb49d, type: 3}
---- !u!64 &6218099524691743272
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5124989360840211050}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -6563985009384706440, guid: b0b6848550c31d64982facb6bc8bb49d, type: 3}
---- !u!114 &6218099524691743273
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5124989360840211050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 620645ba068ece5458b97d29799ecd23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseTexture: {fileID: 2800000, guid: b209f41c4c9f0544c8750851a7f105d3, type: 3}
-  dirtTexture: {fileID: 2800000, guid: 6f93d82fb2ff2c24d9ec2c225ff211ec, type: 3}
-  maskTexture: {fileID: 2800000, guid: 7a408e9a5f261c84a9d30d15e7c957ef, type: 3}
-  maskTextureCleaned: {fileID: 2800000, guid: 4dd130e0299af2e4296a5c8329dea275, type: 3}
-  maxPercentage: 95
-  brushType: 2
-  brushSize: 100
-  brushWidth: 100
-  brushHeight: 50
 --- !u!4 &6617749022855741429
 Transform:
   m_ObjectHideFlags: 0
@@ -5955,7 +5893,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 99656467281103303, guid: b0b6848550c31d64982facb6bc8bb49d, type: 3}
-  - {fileID: -876546973899608171, guid: f737269497ac86b42849a1087e3b785a, type: 3}
+  - {fileID: 2100000, guid: b543de881e26d0c4ca4a99096d3e37f6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6196,7 +6134,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: -7545873477151259802, guid: b0b6848550c31d64982facb6bc8bb49d, type: 3}
-  - {fileID: 637949407474519127, guid: b0b6848550c31d64982facb6bc8bb49d, type: 3}
+  - {fileID: 2100000, guid: b543de881e26d0c4ca4a99096d3e37f6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6218,8 +6156,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7982939150293067711
-BoxCollider:
+--- !u!64 &7982939150293067712
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -6236,9 +6174,10 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.56944436, y: 2.0325375, z: 0.5694443}
-  m_Center: {x: -0.000000059604645, y: -0.36543125, z: 0.0000004917383}
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7280968804236794743, guid: b0b6848550c31d64982facb6bc8bb49d, type: 3}
 --- !u!33 &8118799945313514972
 MeshFilter:
   m_ObjectHideFlags: 0
