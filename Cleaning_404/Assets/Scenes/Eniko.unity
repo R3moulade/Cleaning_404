@@ -252,8 +252,9 @@ GameObject:
   - component: {fileID: 60849739}
   - component: {fileID: 60849741}
   - component: {fileID: 60849740}
+  - component: {fileID: 60849742}
   m_Layer: 0
-  m_Name: ShowerCurtain
+  m_Name: ShowerCurtainClosed
   m_TagString: interactive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -281,7 +282,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 60849738}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -328,6 +329,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 60849738}
   m_Mesh: {fileID: 5301569487713179719, guid: b0b6848550c31d64982facb6bc8bb49d, type: 3}
+--- !u!65 &60849742
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60849738}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.6284413, y: 2.188705, z: 0.0621562}
+  m_Center: {x: 0.01480341, y: -0.017349303, z: -1.0875e-41}
 --- !u!1 &75700869
 GameObject:
   m_ObjectHideFlags: 0
@@ -610,8 +632,9 @@ GameObject:
   - component: {fileID: 154511042}
   - component: {fileID: 154511044}
   - component: {fileID: 154511043}
+  - component: {fileID: 154511045}
   m_Layer: 0
-  m_Name: ShowerCurtain.001
+  m_Name: ShowerCurtainOpen
   m_TagString: interactive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -685,6 +708,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 154511041}
+  m_Mesh: {fileID: 5823455432409320753, guid: b0b6848550c31d64982facb6bc8bb49d, type: 3}
+--- !u!64 &154511045
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154511041}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
   m_Mesh: {fileID: 5823455432409320753, guid: b0b6848550c31d64982facb6bc8bb49d, type: 3}
 --- !u!1001 &168500442
 PrefabInstance:
@@ -2376,6 +2421,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 977017848}
+  - component: {fileID: 977017849}
   m_Layer: 0
   m_Name: Shower Curtains
   m_TagString: Untagged
@@ -2400,6 +2446,21 @@ Transform:
   - {fileID: 154511042}
   m_Father: {fileID: 1326845060}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &977017849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977017847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6854dd3a9b244e4bbed1363743f83a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showerCurtainOpen: {fileID: 154511041}
+  showerCurtainClosed: {fileID: 60849738}
+  interactionDistance: 3
 --- !u!1001 &998797901
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3381,7 +3442,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 116717634}
   - {fileID: 589640515}
   - {fileID: 2127611643}
   - {fileID: 2715889249533855395}
@@ -3402,6 +3462,7 @@ Transform:
   - {fileID: 1356166856}
   - {fileID: 1058245420}
   - {fileID: 977017848}
+  - {fileID: 116717634}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1356166855
