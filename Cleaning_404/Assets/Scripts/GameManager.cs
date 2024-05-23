@@ -8,16 +8,14 @@ public class GameManager : MonoBehaviour
     public GameObject objectToSpawn;
     public Transform spawnLocation;
 
-    public string checkDirt;
+    public string[] checkDirtTags;
 
     private bool objectSpawned = false;
 
     void Update() {
-        int count = CountDirt(checkDirt);
-
-        if (count == 0 && objectSpawned == false) {
-                SpawnObject();
-                objectSpawned = true;
+        if (AllTagsHaveNoObjects() && !objectSpawned) {
+            SpawnObject();
+            objectSpawned = true;
         }
     }
 
@@ -28,6 +26,15 @@ public class GameManager : MonoBehaviour
         } else {
             Destroy(gameObject);
         }
+    }
+
+    bool AllTagsHaveNoObjects() {
+        foreach (string tag in checkDirtTags) {
+            if (CountDirt(tag) > 0) {
+                return false;
+            }
+        }
+        return true;
     }
 
     int CountDirt(string tag) {
