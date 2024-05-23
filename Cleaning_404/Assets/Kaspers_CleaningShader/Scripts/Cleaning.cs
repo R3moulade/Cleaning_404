@@ -81,7 +81,7 @@ public class Cleaning : MonoBehaviour {
 
                 // Get the UV coordinates at the hit point
                 Vector2 texCoord = hit.textureCoord;
-                Debug.Log("UV Coordinates at cursor: " + texCoord);
+                // Debug.Log("UV Coordinates at cursor: " + texCoord);
 
                 // Draw on the mask texture
                 DrawOnMask(texCoord);
@@ -171,11 +171,13 @@ private void DrawOnMask(Vector2 uv)
         Circle,
         Rectangle
     }
-private void CleanedObject()
-{
-    appliedMaskTexture = maskTextureCleaned;
-    myMaterial.SetTexture("_DirtMask", appliedMaskTexture);
-    gameObject.tag = "clean";
-    Debug.Log("Cleaning completed on " + gameObject.name);
-}
+    private void CleanedObject()
+    {
+        appliedMaskTexture = maskTextureCleaned;
+        myMaterial.SetTexture("_DirtMask", appliedMaskTexture);
+        gameObject.tag = "clean";
+        Debug.Log("Cleaning completed on " + gameObject.name);
+
+        GameManager.instance.CountDirt("dirty");
+    }
 }

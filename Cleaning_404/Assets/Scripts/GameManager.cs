@@ -8,18 +8,8 @@ public class GameManager : MonoBehaviour
     public GameObject objectToSpawn;
     public Transform spawnLocation;
 
-    public string checkDirt;
 
     private bool objectSpawned = false;
-
-    void Update() {
-        int count = CountDirt(checkDirt);
-
-        if (count == 0 && objectSpawned == false) {
-                SpawnObject();
-                objectSpawned = true;
-        }
-    }
 
     private void Awake() {
         if (instance == null) {
@@ -29,11 +19,27 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    int CountDirt(string tag) {
-        GameObject[] taggedObjects = GameObject.FindGameObjectsWithTag(tag);
-        return taggedObjects.Length;
+    private void Start() {
+        CountDirt("dirty");
     }
+
+public List<string> CountDirt(string tag) {
+    GameObject[] taggedObjects = GameObject.FindGameObjectsWithTag(tag);
+    List<string> objectNames = new List<string>();
+
+    foreach (GameObject obj in taggedObjects) {
+        objectNames.Add(obj.name);
+    }
+
+    if (taggedObjects.Length == 0 && objectSpawned == false) {
+        SpawnObject();
+        objectSpawned = true;
+    }
+        UIManager.instance.DirtList(objectNames);
+
+
+    return objectNames;
+}
 
     void SpawnObject() {
         if (objectToSpawn != null && spawnLocation != null) {

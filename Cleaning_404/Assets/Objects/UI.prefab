@@ -123,6 +123,7 @@ MonoBehaviour:
   - decalcifier
   - glass_cleaner
   - trash
+  - interactive
   whiteKnob: {fileID: 7077263687346786144}
   yellowKnob: {fileID: 5674183758047071953}
   pressEText: {fileID: 5114858897816411694}

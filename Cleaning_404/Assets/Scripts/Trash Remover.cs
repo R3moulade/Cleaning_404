@@ -23,7 +23,7 @@ public class TrashRemover : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            Debug.Log("Hit something!");
+            
 
              if (hit.collider.CompareTag(trashTag)) {
                 if (Input.GetKeyDown(KeyCode.E))

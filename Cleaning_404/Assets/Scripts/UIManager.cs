@@ -1,14 +1,26 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 
-public class Crosshair : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
+    public static UIManager instance;
+
     public string[] interactiveTags; // Tags to detect for color switch
     public Image whiteKnob; // Reference to the white knob image
     public Image yellowKnob; // Reference to the yellow knob image
     public TextMeshProUGUI pressEText; // Reference to the "Press E" text prompt
+    public TextMeshProUGUI dirtListText;
 
+        private void Awake() {
+        if (instance == null) {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        } else {
+            Destroy(gameObject);
+        }
+    }
     void Start()
     {
         // Ensure only white knob is initially active
@@ -46,5 +58,11 @@ public class Crosshair : MonoBehaviour
     {
         whiteKnob.gameObject.SetActive(!isYellow);
         yellowKnob.gameObject.SetActive(isYellow);
+    }
+    public void DirtList(List<string> objectNames)
+    {
+        // Convert the list to a string and display it
+        string dirtListString = string.Join("\n", objectNames);
+        dirtListText.text = dirtListString;
     }
 }
