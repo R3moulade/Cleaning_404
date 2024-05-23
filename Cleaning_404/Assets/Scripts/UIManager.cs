@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     public Image yellowKnob; // Reference to the yellow knob image
     public TextMeshProUGUI pressEText; // Reference to the "Press E" text prompt
     public TextMeshProUGUI dirtListText;
+    public TextMeshProUGUI trashListText;
 
         private void Awake() {
         if (instance == null) {
@@ -59,10 +60,13 @@ public class UIManager : MonoBehaviour
         whiteKnob.gameObject.SetActive(!isYellow);
         yellowKnob.gameObject.SetActive(isYellow);
     }
-    public void DirtList(List<string> objectNames)
+    public void DirtList(List<string> objectNames, List<string> trashObjectNames)
     {
         // Convert the list to a string and display it
         string dirtListString = string.Join("\n", objectNames);
         dirtListText.text = dirtListString;
+
+        string trashListString = string.Join("\n", trashObjectNames);
+        trashListText.text = trashListString;
     }
 }

@@ -4,15 +4,7 @@ using UnityEngine;
 
 public class TrashRemover : MonoBehaviour
 {
-
     public string trashTag;
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -23,14 +15,19 @@ public class TrashRemover : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            
-
-             if (hit.collider.CompareTag(trashTag)) {
+            if (hit.collider.CompareTag(trashTag)) {
                 if (Input.GetKeyDown(KeyCode.E))
-            {
-                 Destroy(hit.collider.gameObject);
-             }
-             }
+                {
+                    Destroy(hit.collider.gameObject);
+                    StartCoroutine(CountDirtNextFrame());
+                }
+            }
         }
+    }
+
+    IEnumerator CountDirtNextFrame()
+    {
+        yield return new WaitForEndOfFrame();
+        GameManager.instance.CountDirt();
     }
 }

@@ -178,6 +178,6 @@ private void DrawOnMask(Vector2 uv)
         gameObject.tag = "clean";
         Debug.Log("Cleaning completed on " + gameObject.name);
 
-        GameManager.instance.CountDirt("dirty");
+        GameManager.instance.CountDirt();
     }
 }
