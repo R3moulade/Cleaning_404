@@ -4,19 +4,10 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     public float moveSpeed;
-
     public float groundDrag = 6f;
-
-    public float jumpForce;
-    public float jumpCooldown;
-    public float airMultiplier;
-    bool readyToJump;
 
     [HideInInspector] public float walkSpeed;
     [HideInInspector] public float sprintSpeed;
-
-    [Header("Keybinds")]
-    public KeyCode jumpKey = KeyCode.Space;
 
     [Header("Ground Check")]
     public float playerHeight;
@@ -39,16 +30,29 @@ public class PlayerMovement : MonoBehaviour
 
     private float timer = 0.0f;
     private Transform cameraTransform;
+    private Transform cameraHolder;
+    private float originalY;
+private bool isTiptoeing = false;
+private bool isCrouching = false;
 
+
+    private void Awake()
+    {
+        cameraHolder = transform.Find("CameraHolder");
+        if (cameraHolder == null)
+        {
+            Debug.LogError("CameraHolder not found");
+        }
+    }
     private void Start()
     {
-        rb = GetComponent <Rigidbody> ();
+        rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
-
-        readyToJump = true;
 
         // Assumes the main camera is used for the player's view
         cameraTransform = Camera.main.transform;
+
+        originalY = cameraHolder.position.y;
     }
 
     private void Update()
@@ -67,6 +71,9 @@ public class PlayerMovement : MonoBehaviour
 
         // Handle head bobbing
         HandleHeadBobbing();
+        //Tiptoe
+        Tiptoe();
+        Crouch();
     }
 
     private void FixedUpdate()
@@ -78,14 +85,6 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
-
-        // when to jump
-        if (Input.GetKey(jumpKey) && readyToJump && grounded)
-        {
-            readyToJump = false;
-            Jump();
-            Invoke(nameof(ResetJump), jumpCooldown);
-        }
     }
 
     private void MovePlayer()
@@ -99,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
 
         // in air
         else if (!grounded)
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
     }
 
     private void SpeedControl()
@@ -112,18 +111,6 @@ public class PlayerMovement : MonoBehaviour
             Vector3 limitedVel = flatVel.normalized * moveSpeed;
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
         }
-    }
-
-    private void Jump()
-    {
-        // reset y velocity
-        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-    }
-    private void ResetJump()
-    {
-        readyToJump = true;
     }
 
     private void HandleHeadBobbing()
@@ -152,6 +139,40 @@ public class PlayerMovement : MonoBehaviour
             Vector3 localPosition = cameraTransform.localPosition;
             localPosition.y = midpoint;
             cameraTransform.localPosition = localPosition;
+        }
+    }
+    private void Tiptoe()
+    {
+        if (Input.GetKey(KeyCode.LeftShift) && !isTiptoeing)
+        {
+            Vector3 newPosition = cameraHolder.position;
+            newPosition.y = originalY + 0.7f;
+            cameraHolder.position = newPosition;
+            isTiptoeing = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift) && isTiptoeing)
+        {
+            Vector3 newPosition = cameraHolder.position;
+            newPosition.y = originalY;
+            cameraHolder.position = newPosition;
+            isTiptoeing = false;
+        }
+    }
+    private void Crouch()
+    {
+        if (Input.GetKey(KeyCode.LeftControl) && !isCrouching)
+        {
+            Vector3 newPosition = cameraHolder.position;
+            newPosition.y = originalY - 0.7f; // Adjust this value to control the crouch height
+            cameraHolder.position = newPosition;
+            isCrouching = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftControl) && isCrouching)
+        {
+            Vector3 newPosition = cameraHolder.position;
+            newPosition.y = originalY;
+            cameraHolder.position = newPosition;
+            isCrouching = false;
         }
     }
 }

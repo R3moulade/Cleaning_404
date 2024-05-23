@@ -10,6 +10,7 @@ public class Cleaning : MonoBehaviour {
     [SerializeField] private Texture2D baseTexture;
     [SerializeField] private Texture2D dirtTexture;
     [SerializeField] private Texture2D maskTexture;
+    [SerializeField] private Texture2D maskTextureCleaned;
     [SerializeField] private int maxPercentage = 95;
 
     [Header("Brush Settings")]
@@ -170,9 +171,11 @@ private void DrawOnMask(Vector2 uv)
         Circle,
         Rectangle
     }
-    private void CleanedObject()
-    {
-        gameObject.tag = "clean";
-        Debug.Log("Cleaning completed on " + gameObject.name);
-    }
+private void CleanedObject()
+{
+    appliedMaskTexture = maskTextureCleaned;
+    myMaterial.SetTexture("_DirtMask", appliedMaskTexture);
+    gameObject.tag = "clean";
+    Debug.Log("Cleaning completed on " + gameObject.name);
+}
 }
