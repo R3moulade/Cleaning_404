@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public GameObject objectToSpawn;
     public Transform spawnLocation;
 
+    public string[] checkDirtTags;
 
     private bool objectSpawned = false;
 
@@ -23,23 +24,25 @@ public class GameManager : MonoBehaviour
         CountDirt("dirty");
     }
 
-public List<string> CountDirt(string tag) {
-    GameObject[] taggedObjects = GameObject.FindGameObjectsWithTag(tag);
-    List<string> objectNames = new List<string>();
+    public List<string> CountDirt(string tag) {
+        GameObject[] dirtObjects = GameObject.FindGameObjectsWithTag(tag);
+        GameObject[] trashObjects = GameObject.FindGameObjectsWithTag("trash");
 
-    foreach (GameObject obj in taggedObjects) {
-        objectNames.Add(obj.name);
+        List<string> dirtObjectNames = new List<string>();
+
+        foreach (GameObject obj in dirtObjects) {
+            dirtObjectNames.Add(obj.name);
+        }
+
+        if (dirtObjects.Length == 0 && trashObjects.Length == 0 && objectSpawned == false) {
+            SpawnObject();
+            objectSpawned = true;
+        }
+            UIManager.instance.DirtList(dirtObjectNames);
+
+
+        return dirtObjectNames;
     }
-
-    if (taggedObjects.Length == 0 && objectSpawned == false) {
-        SpawnObject();
-        objectSpawned = true;
-    }
-        UIManager.instance.DirtList(objectNames);
-
-
-    return objectNames;
-}
 
     void SpawnObject() {
         if (objectToSpawn != null && spawnLocation != null) {

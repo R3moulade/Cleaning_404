@@ -4,6 +4,7 @@ public class Door : MonoBehaviour
 {
     private Animation doorAnimation;
     private bool isOpen = false;
+    private bool canInteract = true; // Flag to determine if the door can be interacted with
 
     void Start()
     {
@@ -12,7 +13,7 @@ public class Door : MonoBehaviour
 
     public void ToggleDoor()
     {
-        if (doorAnimation != null)
+        if (doorAnimation != null && canInteract)
         {
             if (isOpen)
             {
@@ -24,5 +25,10 @@ public class Door : MonoBehaviour
             }
             isOpen = !isOpen;
         }
+    }
+
+    public void DisableInteraction()
+    {
+        canInteract = false;
     }
 }
