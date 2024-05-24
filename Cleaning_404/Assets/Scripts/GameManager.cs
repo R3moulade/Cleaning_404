@@ -21,6 +21,18 @@ public class GameManager : MonoBehaviour
     private void Start() {
         CountDirt();
     }
+    
+    void Update()
+{
+    if (Input.GetKeyDown(KeyCode.C))
+    {
+        GameObject[] dirtyObjects = GameObject.FindGameObjectsWithTag("dirty");
+        foreach (GameObject obj in dirtyObjects)
+        {
+            obj.tag = "clean";
+        }
+    }
+}
 
     public List<string> CountDirt() {
         GameObject[] dirtObjects = GameObject.FindGameObjectsWithTag("dirty");
