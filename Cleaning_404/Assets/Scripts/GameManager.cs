@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public Transform spawnLocation;
 
     private bool objectSpawned = false;
+    
 
     private void Awake() {
         if (instance == null) {
@@ -21,9 +22,9 @@ public class GameManager : MonoBehaviour
     private void Start() {
         CountDirt();
     }
-    
+
     void Update()
-{
+    {
     if (Input.GetKeyDown(KeyCode.C))
     {
         GameObject[] dirtyObjects = GameObject.FindGameObjectsWithTag("dirty");
@@ -31,9 +32,22 @@ public class GameManager : MonoBehaviour
         {
             obj.tag = "clean";
         }
-    }
-}
 
+        GameObject[] trashObjects = GameObject.FindGameObjectsWithTag("trash");
+        foreach (GameObject obj in trashObjects)
+        {
+            Destroy(obj);
+            StartCoroutine(CountDirtNextFrame());
+        }
+    }
+
+
+    }
+    IEnumerator CountDirtNextFrame()
+    {
+        yield return new WaitForEndOfFrame();
+        CountDirt();
+    }
     public List<string> CountDirt() {
         GameObject[] dirtObjects = GameObject.FindGameObjectsWithTag("dirty");
         GameObject[] trashObjects = GameObject.FindGameObjectsWithTag("trash");

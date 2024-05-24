@@ -87,7 +87,8 @@ public class Cleaning : MonoBehaviour {
                 DrawOnMask(texCoord);
 
             }
-        }  
+        }
+
     }
 
 private void DrawOnMask(Vector2 uv)
