@@ -78,4 +78,9 @@ public class UIManager : MonoBehaviour
         string trashListString = string.Join("\n", trashObjectNames);
         trashListText.text = trashListString;
     }
+
+    public void UpdateCleanPercentage(float cleanPercentage)
+    {
+        cleanPercentageText.text = cleanPercentage.ToString("F0") + "%";
+    }
 }

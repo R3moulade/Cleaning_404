@@ -141,6 +141,7 @@ private void DrawOnMask(Vector2 uv)
     appliedMaskTexture.Apply();
     int cleanTotalPercentage = (int)(((float)blackPixelCount / totalPixelCount) * 100);
     int cleanPercentage = (int)(((float)cleanTotalPercentage / maxPercentage) * 100);
+    UIManager.instance.UpdateCleanPercentage(cleanPercentage);
 
     Debug.Log("Black Pixel Count: " + cleanTotalPercentage + "%, " + cleanPercentage + "%");
 
