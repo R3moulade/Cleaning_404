@@ -32,9 +32,8 @@ public class PlayerMovement : MonoBehaviour
     private Transform cameraTransform;
     private Transform cameraHolder;
     private float originalY;
-private bool isTiptoeing = false;
-private bool isCrouching = false;
-
+    private bool isTiptoeing = false;
+    private bool isCrouching = false;
 
     private void Awake()
     {
@@ -44,6 +43,7 @@ private bool isCrouching = false;
             Debug.LogError("CameraHolder not found");
         }
     }
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -141,6 +141,13 @@ private bool isCrouching = false;
             cameraTransform.localPosition = localPosition;
         }
     }
+    
+    // Method to check if the player is moving
+    public bool IsMoving()
+    {
+        return Mathf.Abs(horizontalInput) > 0 || Mathf.Abs(verticalInput) > 0;
+    }
+
     private void Tiptoe()
     {
         if (Input.GetKey(KeyCode.LeftShift) && !isTiptoeing)
@@ -158,6 +165,7 @@ private bool isCrouching = false;
             isTiptoeing = false;
         }
     }
+
     private void Crouch()
     {
         if (Input.GetKey(KeyCode.LeftControl) && !isCrouching)

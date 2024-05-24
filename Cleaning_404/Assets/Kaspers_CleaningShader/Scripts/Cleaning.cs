@@ -138,10 +138,12 @@ private void DrawOnMask(Vector2 uv)
     
     // Apply changes to the texture
     appliedMaskTexture.Apply();
-    int cleanPercentage = (int)(((float)blackPixelCount / totalPixelCount) * 100);
-    Debug.Log("Black Pixel Count: " + cleanPercentage + "%");
+    int cleanTotalPercentage = (int)(((float)blackPixelCount / totalPixelCount) * 100);
+    int cleanPercentage = (int)(((float)cleanTotalPercentage / maxPercentage) * 100);
 
-    if (cleanPercentage >= maxPercentage)
+    Debug.Log("Black Pixel Count: " + cleanTotalPercentage + "%, " + cleanPercentage + "%");
+
+    if (cleanTotalPercentage >= maxPercentage)
     {
         CleanedObject();
     }
@@ -178,6 +180,6 @@ private void DrawOnMask(Vector2 uv)
         gameObject.tag = "clean";
         Debug.Log("Cleaning completed on " + gameObject.name);
 
-        GameManager.instance.CountDirt("dirty");
+        GameManager.instance.CountDirt();
     }
 }
