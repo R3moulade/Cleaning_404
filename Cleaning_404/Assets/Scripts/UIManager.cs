@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI pressEText; // Reference to the "Press E" text prompt
     public TextMeshProUGUI dirtListText;
     public TextMeshProUGUI trashListText;
+    public TextMeshProUGUI cleanPercentageText;
 
         private void Awake() {
         if (instance == null) {
@@ -53,6 +54,7 @@ public class UIManager : MonoBehaviour
         // If no object with the specified tag is hit, switch back to white knob color
         SetCrosshairColor(false);
          pressEText.gameObject.SetActive(false);
+
     }
 
     public void SetCrosshairColor(bool isYellow)
