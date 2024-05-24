@@ -62,11 +62,18 @@ public class UIManager : MonoBehaviour
         whiteKnob.gameObject.SetActive(!isYellow);
         yellowKnob.gameObject.SetActive(isYellow);
     }
-    public void DirtList(List<string> objectNames, List<string> trashObjectNames)
+    public void DirtList(List<string> dirtObjectNames, List<string> trashObjectNames)
     {
         // Convert the list to a string and display it
-        string dirtListString = string.Join("\n", objectNames);
-        dirtListText.text = dirtListString;
+        if (dirtObjectNames.Count <= 3)
+        {
+            string dirtListString = string.Join("\n", dirtObjectNames);
+            dirtListText.text = dirtListString;
+        }
+        else {
+            dirtListText.text = dirtObjectNames.Count + " items left to clean";
+        }
+
 
         string trashListString = string.Join("\n", trashObjectNames);
         trashListText.text = trashListString;
