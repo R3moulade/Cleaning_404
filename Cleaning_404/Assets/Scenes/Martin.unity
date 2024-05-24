@@ -4340,7 +4340,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7b545f8cd399efa4f9336be41dc59aec, type: 3}
   - {fileID: 8300000, guid: fdb90db54866aea418d82c438de3c3ff, type: 3}
   minTimeBetweenSounds: 60
-  maxTimeBetweenSounds: 160
+  maxTimeBetweenSounds: 200
 --- !u!82 &1520192770
 AudioSource:
   m_ObjectHideFlags: 0
