@@ -179,9 +179,14 @@ private void DrawOnMask(Vector2 uv)
     {
         appliedMaskTexture = maskTextureCleaned;
         myMaterial.SetTexture("_DirtMask", appliedMaskTexture);
+        if (gameObject.CompareTag("dirty"))
+        {
+            UIManager.instance.ObjectCleaned(gameObject.name);
+        }
         gameObject.tag = "clean";
         Debug.Log("Cleaning completed on " + gameObject.name);
 
         GameManager.instance.CountDirt();
+
     }
 }

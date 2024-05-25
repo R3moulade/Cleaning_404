@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
@@ -14,14 +15,18 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI dirtListText;
     public TextMeshProUGUI trashListText;
     public TextMeshProUGUI cleanPercentageText;
+    public TextMeshProUGUI objectCleanedText;
+    public Animation objectCleanedAnimation;
+    private Vector3 originalScale;
 
-        private void Awake() {
+    private void Awake() {
         if (instance == null) {
             instance = this;
             DontDestroyOnLoad(gameObject);
         } else {
             Destroy(gameObject);
         }
+        originalScale = objectCleanedText.transform.localScale;
     }
     void Start()
     {
@@ -82,5 +87,11 @@ public class UIManager : MonoBehaviour
     public void UpdateCleanPercentage(float cleanPercentage)
     {
         cleanPercentageText.text = cleanPercentage.ToString("F0") + "%";
+    }
+    public void ObjectCleaned(string objectCleanedName)
+    {
+        objectCleanedText.text = objectCleanedName + " cleaned";
+
+        objectCleanedAnimation.Play();
     }
 }
