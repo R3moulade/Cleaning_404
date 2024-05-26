@@ -19,12 +19,12 @@ public class Cabinet : MonoBehaviour
             if (isOpen)
             {
                 StartCoroutine(PlayAnimation("CabinetDoorClose"));
-                Debug.Log("Close Cabinet");
+                //Debug.Log("Close Cabinet");
             }
             else
             {
                 StartCoroutine(PlayAnimation("CabinetDoorOpen"));
-                Debug.Log("Open Cabinet");
+                //Debug.Log("Open Cabinet");
             }
             isOpen = !isOpen; // Toggle the state
         }

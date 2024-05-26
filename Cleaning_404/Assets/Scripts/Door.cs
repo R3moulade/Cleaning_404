@@ -21,12 +21,12 @@ public class Door : MonoBehaviour
             if (isOpen)
             {
                 StartCoroutine(PlayAnimation("RoomDoorClose"));
-                Debug.Log("Close Room");
+                //Debug.Log("Close Room");
             }
             else
             {
                 StartCoroutine(PlayAnimation("RoomDoorOpen"));
-                Debug.Log("Open Room");
+                //Debug.Log("Open Room");
             }
             isOpen = !isOpen; // Toggle the state
         }
