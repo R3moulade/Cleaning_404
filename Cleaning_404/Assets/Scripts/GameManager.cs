@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public GameObject pentagram;
     public BoxCollider candleSpawner;
     public GameObject candles;
+    public AudioSource drawPentagram;
+    public AudioSource lightCandles;
 
     private bool objectSpawned = false;
     
@@ -86,11 +88,13 @@ public class GameManager : MonoBehaviour
         pentagram.GetComponent<Renderer>().enabled = true;
         pentagram.GetComponent<BoxCollider>().enabled = false;
         candleSpawner.enabled = true;
+        drawPentagram.Play();
     }
     public void SpawnCandles(){
         candleSpawner.enabled = false;
         Instantiate(candles, candleSpawner.transform.position, Quaternion.Euler(90, 0, 0));
         UIManager.instance.MakeARitualCircle("");
+        lightCandles.Play();
     }
     
 }

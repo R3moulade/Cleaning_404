@@ -121,6 +121,15 @@ public class UIManager : MonoBehaviour
     public void MakeARitualCircle(string objectiveText)
     {
         objectCleanedAnimation.Stop();
+        // Get the current color of the text
+        Color currentColor = objectCleanedText.color;
+
+        // Change the alpha of the color
+        currentColor.a = 225f / 255f;
+
+        // Set the color of the text
+        objectCleanedText.color = currentColor;
+        
         objectCleanedText.text = objectiveText;
     }
 }
