@@ -1,9 +1,11 @@
+using System.Collections;
 using UnityEngine;
 
 public class Cabinet : MonoBehaviour
 {
     private Animation cabinetAnimation;
     private bool isOpen = false;
+    private bool isAnimating = false;
 
     void Start()
     {
@@ -12,17 +14,27 @@ public class Cabinet : MonoBehaviour
 
     public void ToggleCabinet()
     {
-        if (cabinetAnimation != null)
+        if (cabinetAnimation != null && !isAnimating)
         {
             if (isOpen)
             {
-                cabinetAnimation.Play("CabinetDoorClose");
+                StartCoroutine(PlayAnimation("CabinetDoorClose"));
+                Debug.Log("Close Cabinet");
             }
             else
             {
-                cabinetAnimation.Play("CabinetDoorOpen");
+                StartCoroutine(PlayAnimation("CabinetDoorOpen"));
+                Debug.Log("Open Cabinet");
             }
-            isOpen = !isOpen;
+            isOpen = !isOpen; // Toggle the state
         }
+    }
+
+    private IEnumerator PlayAnimation(string animationName)
+    {
+        isAnimating = true;
+        cabinetAnimation.Play(animationName);
+        yield return new WaitForSeconds(cabinetAnimation[animationName].length);
+        isAnimating = false;
     }
 }

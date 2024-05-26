@@ -6,7 +6,7 @@ public class OpenCabinet : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) // Left mouse button clicked
+        if (Input.GetKeyDown(KeyCode.E)) // Use GetKeyDown to detect a single key press
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
