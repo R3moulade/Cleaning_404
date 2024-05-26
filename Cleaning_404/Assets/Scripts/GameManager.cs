@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public GameObject objectToSpawn;
-    public Transform spawnLocation;
+    public GameObject spiderPentagramCandles;
+    public GameObject pentagram;
+    public BoxCollider candleSpawner;
+    public GameObject candles;
 
     private bool objectSpawned = false;
+    
     
 
     private void Awake() {
@@ -74,11 +78,19 @@ public class GameManager : MonoBehaviour
     }
 
     void SpawnObject() {
-        if (objectToSpawn != null && spawnLocation != null) {
-            Instantiate(objectToSpawn, spawnLocation.position, spawnLocation.rotation);
-        } else {
-            Debug.LogError("Missing objectToSpawn or spawnLocation");
-        }
+        pentagram.GetComponent<BoxCollider>().enabled = true;
+        UIManager.instance.MakeARitualCircle("Make a ritual circle to banish the bathroom demon");
+    }
+
+    public void SpawnPentagram(){
+        pentagram.GetComponent<Renderer>().enabled = true;
+        pentagram.GetComponent<BoxCollider>().enabled = false;
+        candleSpawner.enabled = true;
+    }
+    public void SpawnCandles(){
+        candleSpawner.enabled = false;
+        Instantiate(candles, candleSpawner.transform.position, Quaternion.Euler(90, 0, 0));
+        UIManager.instance.MakeARitualCircle("");
     }
     
 }

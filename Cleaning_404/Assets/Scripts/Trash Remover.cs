@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class TrashRemover : MonoBehaviour
 {
     public string trashTag;
+
 
     // Update is called once per frame
 void Update()
@@ -18,6 +20,7 @@ void Update()
         if (hit.collider.CompareTag(trashTag)) {
             if (Input.GetKeyDown(KeyCode.E))
             {
+
                 if (hit.collider.gameObject.name == "dirty drain with arm")
                 {
                     StartCoroutine(DestroyAndCountDirtWithDelay(hit.collider.gameObject, 5.0f));
@@ -28,7 +31,10 @@ void Update()
                     StartCoroutine(CountDirtNextFrame());
                 }
             }
-        }
+
+
+        }            
+
     }
 }
 

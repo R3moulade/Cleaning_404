@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI objectCleanedText;
     public Animation objectCleanedAnimation;
     private Vector3 originalScale;
+    public TextMeshProUGUI pentagramText;
 
     private void Awake() {
         if (instance == null) {
@@ -53,6 +54,29 @@ public class UIManager : MonoBehaviour
                     SetCrosshairColor(true); // Switch to yellow knob color
                     return;
                 }
+                
+            }
+        
+            if (hit.collider.CompareTag("Pentagram"))
+            {
+                if (hit.collider.gameObject.name == "Pentagram Spawner")
+                {
+                    pentagramText.text = "Press E to draw ritual circle";
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        GameManager.instance.SpawnPentagram();
+                    }
+                }
+                if (hit.collider.gameObject.name == "Candle Spawner")
+                {
+                    pentagramText.text = "Press E to light candles";
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        GameManager.instance.SpawnCandles();
+                    }
+                }
+            } else {
+                pentagramText.text = "";
             }
         }
 
@@ -93,5 +117,10 @@ public class UIManager : MonoBehaviour
         objectCleanedText.text = objectCleanedName + " cleaned";
 
         objectCleanedAnimation.Play();
+    }
+    public void MakeARitualCircle(string objectiveText)
+    {
+        objectCleanedAnimation.Stop();
+        objectCleanedText.text = objectiveText;
     }
 }
