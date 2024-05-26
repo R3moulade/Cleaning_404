@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+    // Clear all dirt and trash objects for testing purposes
     if (Input.GetKeyDown(KeyCode.C))
     {
         GameObject[] dirtyObjects = GameObject.FindGameObjectsWithTag("dirty");
@@ -37,17 +38,17 @@ public class GameManager : MonoBehaviour
         foreach (GameObject obj in trashObjects)
         {
             Destroy(obj);
-            StartCoroutine(CountDirtNextFrame());
         }
+        StartCoroutine(CountDirtNextFrame());
     }
-
-
     }
     IEnumerator CountDirtNextFrame()
     {
         yield return new WaitForEndOfFrame();
         CountDirt();
     }
+
+    // Count all dirt and trash objects in the scene for the UI list and spawn the ritual circle
     public List<string> CountDirt() {
         GameObject[] dirtObjects = GameObject.FindGameObjectsWithTag("dirty");
         GameObject[] trashObjects = GameObject.FindGameObjectsWithTag("trash");
@@ -79,4 +80,5 @@ public class GameManager : MonoBehaviour
             Debug.LogError("Missing objectToSpawn or spawnLocation");
         }
     }
+    
 }

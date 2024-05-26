@@ -175,6 +175,7 @@ private void DrawOnMask(Vector2 uv)
         Circle,
         Rectangle
     }
+    
     private void CleanedObject()
     {
         appliedMaskTexture = maskTextureCleaned;
