@@ -95,6 +95,8 @@ public class GameManager : MonoBehaviour
         Instantiate(candles, candleSpawner.transform.position, Quaternion.Euler(90, 0, 0));
         UIManager.instance.MakeARitualCircle("");
         lightCandles.Play();
+        Ending.Instance.SpiderExorcise(true);
     }
+    
     
 }

@@ -1,13 +1,27 @@
 using System.Collections;
 using UnityEngine;
 
-
 public class Door : MonoBehaviour
 {
+    public static Door Instance { get; private set; } // Singleton instance
+
     private Animation doorAnimation;
     private bool isOpen = false;
     private bool canInteract = true; // Flag to determine if the door can be interacted with
     private bool isAnimating = false;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {
@@ -21,12 +35,10 @@ public class Door : MonoBehaviour
             if (isOpen)
             {
                 StartCoroutine(PlayAnimation("RoomDoorClose"));
-                //Debug.Log("Close Room");
             }
             else
             {
                 StartCoroutine(PlayAnimation("RoomDoorOpen"));
-                //Debug.Log("Open Room");
             }
             isOpen = !isOpen; // Toggle the state
         }
