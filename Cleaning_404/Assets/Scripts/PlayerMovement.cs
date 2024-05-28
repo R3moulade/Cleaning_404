@@ -50,9 +50,10 @@ public class PlayerMovement : MonoBehaviour
         rb.freezeRotation = true;
 
         // Assumes the main camera is used for the player's view
-        cameraTransform = Camera.main.transform;
+        // cameraTransform = Camera.main.transform;
 
         originalY = cameraHolder.position.y;
+
     }
 
     private void Update()
@@ -70,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
             rb.drag = 0;
 
         // Handle head bobbing
-        HandleHeadBobbing();
+        // HandleHeadBobbing();
         //Tiptoe
         Tiptoe();
         Crouch();
@@ -113,34 +114,34 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void HandleHeadBobbing()
-    {
-        if (Mathf.Abs(horizontalInput) > 0 || Mathf.Abs(verticalInput) > 0)
-        {
-            timer += bobbingSpeed;
-            if (timer > Mathf.PI * 2)
-            {
-                timer -= Mathf.PI * 2;
-            }
+    // private void HandleHeadBobbing()
+    // {
+    //     if (Mathf.Abs(horizontalInput) > 0 || Mathf.Abs(verticalInput) > 0)
+    //     {
+    //         timer += bobbingSpeed;
+    //         if (timer > Mathf.PI * 2)
+    //         {
+    //             timer -= Mathf.PI * 2;
+    //         }
 
-            float waveslice = Mathf.Sin(timer);
-            float translateChange = waveslice * bobbingAmount;
-            float totalAxes = Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput);
-            totalAxes = Mathf.Clamp(totalAxes, 0.0f, 1.0f);
-            translateChange *= totalAxes;
+    //         float waveslice = Mathf.Sin(timer);
+    //         float translateChange = waveslice * bobbingAmount;
+    //         float totalAxes = Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput);
+    //         totalAxes = Mathf.Clamp(totalAxes, 0.0f, 1.0f);
+    //         translateChange *= totalAxes;
 
-            Vector3 localPosition = cameraTransform.localPosition;
-            localPosition.y = midpoint + translateChange;
-            cameraTransform.localPosition = localPosition;
-        }
-        else
-        {
-            timer = 0.0f;
-            Vector3 localPosition = cameraTransform.localPosition;
-            localPosition.y = midpoint;
-            cameraTransform.localPosition = localPosition;
-        }
-    }
+    //         Vector3 localPosition = cameraTransform.localPosition;
+    //         localPosition.y = midpoint + translateChange;
+    //         cameraTransform.localPosition = localPosition;
+    //     }
+    //     else
+    //     {
+    //         timer = 0.0f;
+    //         Vector3 localPosition = cameraTransform.localPosition;
+    //         localPosition.y = midpoint;
+    //         cameraTransform.localPosition = localPosition;
+    //     }
+    // }
     
     // Method to check if the player is moving
     public bool IsMoving()
@@ -150,17 +151,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void Tiptoe()
     {
-        if (Input.GetKey(KeyCode.LeftShift) && !isTiptoeing)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !isTiptoeing)
         {
             Vector3 newPosition = cameraHolder.position;
-            newPosition.y = originalY + 0.7f;
+            newPosition.y += 0.6f;
             cameraHolder.position = newPosition;
             isTiptoeing = true;
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift) && isTiptoeing)
         {
             Vector3 newPosition = cameraHolder.position;
-            newPosition.y = originalY;
+            newPosition.y -= 0.6f; // Reset y position to originalY - 0.3f
             cameraHolder.position = newPosition;
             isTiptoeing = false;
         }
@@ -171,14 +172,14 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftControl) && !isCrouching)
         {
             Vector3 newPosition = cameraHolder.position;
-            newPosition.y = originalY - 0.7f; // Adjust this value to control the crouch height
+            newPosition.y -= 0.6f; // Adjust this value to control the crouch height
             cameraHolder.position = newPosition;
             isCrouching = true;
         }
         else if (Input.GetKeyUp(KeyCode.LeftControl) && isCrouching)
         {
             Vector3 newPosition = cameraHolder.position;
-            newPosition.y = originalY;
+            newPosition.y += 0.6f; // Reset y position to originalY + 0.5f
             cameraHolder.position = newPosition;
             isCrouching = false;
         }

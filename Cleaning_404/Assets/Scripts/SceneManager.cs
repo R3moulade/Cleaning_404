@@ -23,6 +23,7 @@ public class MainMenu : MonoBehaviour
     public void LoadScene()
     {
         SceneManager.LoadSceneAsync(sceneNumber);
+        Destroy(Camera.main.gameObject);
     }
 
     public void QuitGame()
