@@ -41,10 +41,10 @@ public class Ending : MonoBehaviour
 
     void Update()
     {
-        if (shake)
-        {
-            ShakeCamera();
-        }
+        // if (shake)
+        // {
+        //     ShakeCamera();
+        // }
         if (fade)
         {
             StartCoroutine(FadeInOut());

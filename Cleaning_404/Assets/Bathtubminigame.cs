@@ -31,7 +31,7 @@ IEnumerator StartSpiderMinigameAtRandomInterval()
     while (true)
     {
         // Wait for a random interval between 1 and 10 seconds
-        yield return new WaitForSeconds(Random.Range(10, 15));
+        yield return new WaitForSeconds(Random.Range(30, 40));
 
         // If the shower curtain is not closed, start the SpiderMinigame coroutine
         if (!showerCurtainController.isClosed && !spiderWindup.isPlaying &&!jumpscare.isPlaying)

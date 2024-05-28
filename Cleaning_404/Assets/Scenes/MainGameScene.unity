@@ -1791,7 +1791,7 @@ MonoBehaviour:
   showerCurtainOpen: {fileID: 1358460914042506641}
   showerCurtainClosed: {fileID: 3773066314720269891}
   interactionDistance: 3
-  isOpen: 1
+  isClosed: 1
 --- !u!1 &390865327 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 527840440355171251, guid: a6ef6fa2e705e7847a61d09491f65261,
@@ -2731,13 +2731,13 @@ Transform:
   m_GameObject: {fileID: 515054761}
   serializedVersion: 2
   m_LocalRotation: {x: 0.72688144, y: -0, z: -0, w: 0.686763}
-  m_LocalPosition: {x: 0.37357742, y: -3.45, z: 0.99}
+  m_LocalPosition: {x: 0.37357742, y: -3.77, z: 0.97}
   m_LocalScale: {x: 0.6140936, y: 0.61409366, z: 0.61409366}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 99492220}
   m_Father: {fileID: 400207117}
-  m_LocalEulerAnglesHint: {x: 93.25101, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 120, y: 0, z: 0}
 --- !u!111 &515054763
 Animation:
   m_ObjectHideFlags: 0
@@ -2761,14 +2761,14 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 515054761}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5e9b156d4e0b9ac4babb6d4756dc43fa, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -4923,7 +4923,7 @@ MonoBehaviour:
   spiderWindupAudio: {fileID: 1301710518}
   jumpscareAudio: {fileID: 515054764}
   showerCurtain: {fileID: 319432535}
-  objectToMakeDirty: {fileID: 0}
+  jumpscareSpider: {fileID: 515054762}
 --- !u!4 &1114900324
 Transform:
   m_ObjectHideFlags: 0
@@ -5934,11 +5934,11 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1301710516}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5a505653f7d29d0429ad296ef868b603, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -10188,7 +10188,7 @@ GameObject:
   - component: {fileID: 8670761334872901436}
   m_Layer: 0
   m_Name: leg
-  m_TagString: Untagged
+  m_TagString: trash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
