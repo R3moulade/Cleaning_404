@@ -10,6 +10,8 @@ public class Bathtubminigame : MonoBehaviour
     public GameObject showerCurtain;
     private ShowerCurtainController showerCurtainController;
     public Transform jumpscareSpider;
+    public Transform bathtubSpider;
+    private bool isMinigameTimerActive = false;
 
 
     void Start()
@@ -20,26 +22,30 @@ public class Bathtubminigame : MonoBehaviour
     }
     void Update()
     {
-        if (!showerCurtainController.isClosed && !spiderWindup.isPlaying &&!jumpscare.isPlaying)
+        if (!showerCurtainController.isClosed && !spiderWindup.isPlaying && !jumpscare.isPlaying && !isMinigameTimerActive)
         {
             StartCoroutine(StartSpiderMinigameAtRandomInterval());
         }
     }
 
-IEnumerator StartSpiderMinigameAtRandomInterval()
-{
-    while (true)
+    IEnumerator StartSpiderMinigameAtRandomInterval()
     {
-        // Wait for a random interval between 1 and 10 seconds
-        yield return new WaitForSeconds(Random.Range(30, 40));
+        isMinigameTimerActive = true;
 
-        // If the shower curtain is not closed, start the SpiderMinigame coroutine
-        if (!showerCurtainController.isClosed && !spiderWindup.isPlaying &&!jumpscare.isPlaying)
+        while (!showerCurtainController.isClosed && !spiderWindup.isPlaying && !jumpscare.isPlaying)
         {
-            StartCoroutine(SpiderMinigame());
+            // Wait for a random interval between 1 and 10 seconds
+            yield return new WaitForSeconds(Random.Range(30, 40));
+
+            // If the shower curtain is not closed, start the SpiderMinigame coroutine
+            if (!showerCurtainController.isClosed && !spiderWindup.isPlaying && !jumpscare.isPlaying)
+            {
+                StartCoroutine(SpiderMinigame());
+            }
         }
+
+        isMinigameTimerActive = false;
     }
-}
 IEnumerator SpiderMinigame()
 {
     // Play animation1
@@ -56,6 +62,7 @@ IEnumerator SpiderMinigame()
         {
             spiderWindupAudio.Stop();
             spiderWindup.Stop();
+            bathtubSpider.position = new Vector3(0, -4, 0);
             yield break;
         }
 
@@ -63,6 +70,7 @@ IEnumerator SpiderMinigame()
     }
 
     // Play jumpscare
+    bathtubSpider.position = new Vector3(0, -4, 0);
     jumpscare.Play();
     jumpscareAudio.Play();
 
