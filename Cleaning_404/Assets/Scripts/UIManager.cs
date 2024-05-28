@@ -119,7 +119,7 @@ public class UIManager : MonoBehaviour
 
         objectCleanedAnimation.Play();
     }
-    public void MakeARitualCircle(string objectiveText)
+    public void FadeInOutText(string objectiveText)
     {
         objectCleanedAnimation.Stop();
         // Get the current color of the text
@@ -132,5 +132,6 @@ public class UIManager : MonoBehaviour
         objectCleanedText.color = currentColor;
         
         objectCleanedText.text = objectiveText;
+        objectCleanedAnimation.Play();
     }
 }

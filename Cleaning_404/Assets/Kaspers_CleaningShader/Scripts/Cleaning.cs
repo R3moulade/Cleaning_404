@@ -9,7 +9,7 @@ public class Cleaning : MonoBehaviour {
     [Tooltip("The base texture of the object. Overrides the currently applied textures on the material.")]
     [SerializeField] private Texture2D baseTexture;
     [SerializeField] private Texture2D dirtTexture;
-    [SerializeField] private Texture2D maskTexture;
+    [SerializeField] public Texture2D maskTexture;
     [SerializeField] private Texture2D maskTextureCleaned;
     [SerializeField] private int maxPercentage = 95;
 

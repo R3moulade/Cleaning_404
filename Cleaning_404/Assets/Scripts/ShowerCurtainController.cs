@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class ShowerCurtainController : MonoBehaviour
 {
@@ -7,7 +8,7 @@ public class ShowerCurtainController : MonoBehaviour
     public float interactionDistance = 3.0f;  // Maximum distance to interact
 
     private Camera playerCamera;  // Reference to the main camera
-    public bool isOpen = true;  // Tracks the current state
+    public bool isClosed = true;  // Tracks the current state
 
     void Start()
     {
@@ -16,25 +17,27 @@ public class ShowerCurtainController : MonoBehaviour
 
         // Get the main camera
         playerCamera = Camera.main;
+        // Start the OpenCurtainAtRandomInterval coroutine
+        StartCoroutine(OpenCurtainAtRandomInterval());
     }
 
-    // Update the curtain state based on the isOpen variable
+    // Update the curtain state based on the isClosed variable
     void UpdateCurtainState()
     {
         if (showerCurtainOpen != null && showerCurtainClosed != null)
         {
-            showerCurtainOpen.SetActive(isOpen);
-            showerCurtainClosed.SetActive(!isOpen);
+            showerCurtainOpen.SetActive(isClosed);
+            showerCurtainClosed.SetActive(!isClosed);
 
             // Enable/disable colliders based on the state
-            SetCollidersEnabled(isOpen);
+            SetCollidersEnabled(isClosed);
         }
     }
 
     // Method to toggle the curtain state
     public void ToggleCurtain()
     {
-        isOpen = !isOpen;  // Toggle the state
+        isClosed = !isClosed;  // Toggle the state
         UpdateCurtainState();  // Update the visuals
     }
 
@@ -71,4 +74,18 @@ public class ShowerCurtainController : MonoBehaviour
             }
         }
     }
+    IEnumerator OpenCurtainAtRandomInterval()
+{
+    while (true)
+    {
+        // Wait for a random interval between 1 and 10 seconds
+        yield return new WaitForSeconds(Random.Range(10, 15));
+
+        // If the curtain is not already open, open it
+        if (isClosed)
+        {
+            ToggleCurtain();
+        }
+    }
+}
 }

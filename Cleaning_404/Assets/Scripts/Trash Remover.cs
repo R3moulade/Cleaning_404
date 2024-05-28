@@ -7,36 +7,31 @@ public class TrashRemover : MonoBehaviour
 {
     public string trashTag;
 
-
-    // Update is called once per frame
-void Update()
-{
-    // Raycast from the mouse position
-    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-    RaycastHit hit;
-
-    if (Physics.Raycast(ray, out hit))
+    void Update()
     {
-        if (hit.collider.CompareTag(trashTag)) {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
+        // Raycast from the mouse position
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
 
-                if (hit.collider.gameObject.name == "dirty drain with arm")
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.collider.CompareTag(trashTag)) {
+                if (Input.GetKeyDown(KeyCode.E))
                 {
-                    StartCoroutine(DestroyAndCountDirtWithDelay(hit.collider.gameObject, 5.0f));
+
+                    if (hit.collider.gameObject.name == "dirty drain with arm")
+                    {
+                        StartCoroutine(DestroyAndCountDirtWithDelay(hit.collider.gameObject, 5.0f));
+                    }
+                    else
+                    {
+                        Destroy(hit.collider.gameObject);
+                        StartCoroutine(CountDirtNextFrame());
+                    }
                 }
-                else
-                {
-                    Destroy(hit.collider.gameObject);
-                    StartCoroutine(CountDirtNextFrame());
-                }
-            }
-
-
-        }            
-
+            }            
+        }
     }
-}
 
 IEnumerator DestroyAndCountDirtWithDelay(GameObject obj, float delay)
 {

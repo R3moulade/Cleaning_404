@@ -9,6 +9,8 @@ public class Bathtubminigame : MonoBehaviour
     public AudioSource jumpscareAudio;
     public GameObject showerCurtain;
     private ShowerCurtainController showerCurtainController;
+    public Transform jumpscareSpider;
+
 
     void Start()
     {
@@ -16,7 +18,28 @@ public class Bathtubminigame : MonoBehaviour
         showerCurtainController = showerCurtain.GetComponent<ShowerCurtainController>();
 
     }
+    void Update()
+    {
+        if (!showerCurtainController.isClosed && !spiderWindup.isPlaying &&!jumpscare.isPlaying)
+        {
+            StartCoroutine(StartSpiderMinigameAtRandomInterval());
+        }
+    }
 
+IEnumerator StartSpiderMinigameAtRandomInterval()
+{
+    while (true)
+    {
+        // Wait for a random interval between 1 and 10 seconds
+        yield return new WaitForSeconds(Random.Range(10, 15));
+
+        // If the shower curtain is not closed, start the SpiderMinigame coroutine
+        if (!showerCurtainController.isClosed && !spiderWindup.isPlaying &&!jumpscare.isPlaying)
+        {
+            StartCoroutine(SpiderMinigame());
+        }
+    }
+}
 IEnumerator SpiderMinigame()
 {
     // Play animation1
@@ -29,7 +52,7 @@ IEnumerator SpiderMinigame()
     while (spiderWindup.isPlaying)
     {
         // If shower curtain is closed, stop coroutine, audio and animation
-        if (!showerCurtainController.isOpen)
+        if (showerCurtainController.isClosed)
         {
             spiderWindupAudio.Stop();
             spiderWindup.Stop();
@@ -44,10 +67,15 @@ IEnumerator SpiderMinigame()
     jumpscareAudio.Play();
 
     // Make the object dirty again
+    SomeMethod();
 
-
-    // Display text that it's dirty
-    // Debug.Log(objectToMakeDirty.name + " is dirty again");
+    showerCurtainController.ToggleCurtain();
+    // Wait for jumpscare to finish 1.5 seconds and then reset position of spider
+    yield return new WaitForSeconds(1.6f);
+    jumpscare.Stop();
+    //reset spider position
+    jumpscareSpider.position = new Vector3(0, -4, 0);
+    
 }
 GameObject ChooseRandomCleanObject()
 {
@@ -61,7 +89,7 @@ GameObject ChooseRandomCleanObject()
     }
 
     // Choose a random index
-    int randomIndex = UnityEngine.Random.Range(0, cleanObjects.Length);
+    int randomIndex = Random.Range(0, cleanObjects.Length);
 
     // Return the GameObject at the random index
     return cleanObjects[randomIndex];
@@ -79,11 +107,32 @@ void SomeMethod()
 }
     void MakeObjectDirty(GameObject obj)
     {
-        // Code to make the object dirty
-        obj.GetComponent<Renderer>().material.color = Color.black; // Change the color of the object to black to represent that it's dirty
-        obj.tag = "dirty"; // Change the tag of the object to dirty
+    // Get the Cleaning script attached to the object
+    Cleaning cleaningScript = obj.GetComponent<Cleaning>();
+
+    // If the Cleaning script is attached to the object
+    if (cleaningScript != null)
+    {
+        // Create a new instance of the MaskTexture
+        Texture2D newMaskTexture = Instantiate(cleaningScript.maskTexture);
+
+        // Assign the new instance to the MaskTexture variable of the Cleaning script
+        cleaningScript.maskTexture = newMaskTexture;
     }
+        obj.tag = "dirty"; // Change the tag of the object to dirty
+        StartCoroutine(DisplayDirtyText(obj));    
+        }
+        IEnumerator DisplayDirtyText(GameObject obj)
+        {
+            // Wait for 3 seconds
+            yield return new WaitForSeconds(2.5f);
+
+            // Display text that the object is dirty
+            UIManager.instance.FadeInOutText(obj.name + " is dirty again");
+            GameManager.instance.CountDirt();
+        }
 }
+
     // Update is called once per frame
     // void Update()
     // {
