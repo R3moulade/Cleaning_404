@@ -8,7 +8,6 @@ public class Bathtubminigame : MonoBehaviour
     public AudioSource spiderWindupAudio;
     public AudioSource jumpscareAudio;
     public GameObject showerCurtain;
-    public GameObject objectToMakeDirty;
     private ShowerCurtainController showerCurtainController;
 
     void Start()
@@ -16,7 +15,6 @@ public class Bathtubminigame : MonoBehaviour
         // Get the ShowerCurtainController script attached to the showerCurtain GameObject
         showerCurtainController = showerCurtain.GetComponent<ShowerCurtainController>();
 
-        StartCoroutine(SpiderMinigame());
     }
 
 IEnumerator SpiderMinigame()
@@ -46,12 +44,39 @@ IEnumerator SpiderMinigame()
     jumpscareAudio.Play();
 
     // Make the object dirty again
-    MakeObjectDirty(objectToMakeDirty);
+
 
     // Display text that it's dirty
-    Debug.Log(objectToMakeDirty.name + " is dirty again");
+    // Debug.Log(objectToMakeDirty.name + " is dirty again");
 }
+GameObject ChooseRandomCleanObject()
+{
+    // Get all GameObjects with the tag "clean"
+    GameObject[] cleanObjects = GameObject.FindGameObjectsWithTag("clean");
 
+    // If there are no clean objects, return null
+    if (cleanObjects.Length == 0)
+    {
+        return null;
+    }
+
+    // Choose a random index
+    int randomIndex = UnityEngine.Random.Range(0, cleanObjects.Length);
+
+    // Return the GameObject at the random index
+    return cleanObjects[randomIndex];
+}
+void SomeMethod()
+{
+    // Get a random clean object
+    GameObject randomCleanObject = ChooseRandomCleanObject();
+
+    // If a clean object was found, make it dirty
+    if (randomCleanObject != null)
+    {
+        MakeObjectDirty(randomCleanObject);
+    }
+}
     void MakeObjectDirty(GameObject obj)
     {
         // Code to make the object dirty
