@@ -18,6 +18,12 @@ public class Ending : MonoBehaviour
     public GameObject pentagram;
     public GameObject scarySounds;
     public GameObject flashLight;
+    public Material newSkybox;
+    public Light sunDirectional;
+    public Light sunPoint;
+    public Color newAmbientColor;
+    public float brightness = 1f;
+    public AudioSource birds;
 
     private void Awake()
     {
@@ -30,14 +36,15 @@ public class Ending : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
     }
 
     void Update()
     {
-        // if (shake)
-        // {
-        //     ShakeCamera();
-        // }
+        if (shake)
+        {
+            ShakeCamera();
+        }
         if (fade)
         {
             StartCoroutine(FadeInOut());
@@ -86,6 +93,12 @@ public class Ending : MonoBehaviour
         {
             Debug.Log("No game object named 'candles' found");
         }
+        RenderSettings.skybox = newSkybox;
+        sunDirectional.enabled = true;
+        sunPoint.enabled = true;
+        RenderSettings.ambientLight = newAmbientColor * brightness;
+        birds.Play();
+
 
         duration = 6f; 
 
