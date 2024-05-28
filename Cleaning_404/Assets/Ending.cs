@@ -60,7 +60,9 @@ public class Ending : MonoBehaviour
 
     public void ShakeCamera()
     {
-        playerCamera.transform.localPosition = Random.insideUnitSphere * shakeAmount;
+        Vector3 shakePosition = Random.insideUnitSphere * shakeAmount;
+        shakePosition.y = 2; // set y-axis to 2
+        playerCamera.transform.localPosition = shakePosition;
         shakeAmount += Time.deltaTime * increaseFactor;
     }
 

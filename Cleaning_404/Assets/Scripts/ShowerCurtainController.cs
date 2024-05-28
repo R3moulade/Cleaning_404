@@ -7,7 +7,7 @@ public class ShowerCurtainController : MonoBehaviour
     public float interactionDistance = 3.0f;  // Maximum distance to interact
 
     private Camera playerCamera;  // Reference to the main camera
-    private bool isOpen = true;  // Tracks the current state
+    public bool isOpen = true;  // Tracks the current state
 
     void Start()
     {
@@ -32,7 +32,7 @@ public class ShowerCurtainController : MonoBehaviour
     }
 
     // Method to toggle the curtain state
-    void ToggleCurtain()
+    public void ToggleCurtain()
     {
         isOpen = !isOpen;  // Toggle the state
         UpdateCurtainState();  // Update the visuals

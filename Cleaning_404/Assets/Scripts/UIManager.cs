@@ -44,6 +44,7 @@ public class UIManager : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
+            Debug.DrawLine(ray.origin, hit.point, Color.red);
             // Check if the ray hits a collider with any of the specified tags
             foreach (string interactiveTag in interactiveTags)
             {
