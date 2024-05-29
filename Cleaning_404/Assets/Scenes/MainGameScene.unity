@@ -254,7 +254,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5a505653f7d29d0429ad296ef868b603, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.59
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2241,7 +2241,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   showerCurtainOpen: {fileID: 1358460914042506641}
   showerCurtainClosed: {fileID: 3773066314720269891}
-  interactionDistance: 3
   isClosed: 1
   minInterval: 70
   maxInterval: 90
@@ -2496,8 +2495,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -11055,7 +11054,7 @@ GameObject:
   - component: {fileID: 5483249703541073181}
   m_Layer: 0
   m_Name: door handle
-  m_TagString: Door
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
