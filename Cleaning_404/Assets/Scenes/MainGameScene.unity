@@ -2009,8 +2009,8 @@ MonoBehaviour:
   showerCurtainClosed: {fileID: 3773066314720269891}
   interactionDistance: 3
   isClosed: 1
-  minInterval: 50
-  maxInterval: 70
+  minInterval: 70
+  maxInterval: 90
   pullShowerCurtain: {fileID: 319432538}
 --- !u!82 &319432538
 AudioSource:
@@ -2024,7 +2024,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c767bb54524a18b4c84a16d136f1b197, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.561
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -4094,8 +4094,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4279356671
+  m_fontColor: {r: 1, g: 0.8, b: 0.06666667, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4112,15 +4112,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 19.8
-  m_fontSizeBase: 19.8
+  m_fontSize: 27.5
+  m_fontSizeBase: 27.5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -4148,7 +4148,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -40.429688, w: 17.902588}
+  m_margin: {x: -40.090477, y: 0, z: -40.429688, w: 17.902588}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -4178,7 +4178,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 2, y: -110}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &931372642
@@ -5089,7 +5089,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 7.1, y: -104.5}
+  m_AnchoredPosition: {x: 0, y: -224}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1080909912
@@ -5139,13 +5139,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -5175,7 +5175,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -174.06029, y: -1.2593842, z: -174.7482, w: 2.2020082}
+  m_margin: {x: -246.07593, y: -1.2593842, z: -247.7463, w: 2.2020082}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5241,8 +5241,8 @@ MonoBehaviour:
   showerCurtain: {fileID: 319432535}
   jumpscareSpider: {fileID: 515054762}
   bathtubSpider: {fileID: 19945422}
-  minInterval: 20
-  maxInterval: 30
+  minInterval: 30
+  maxInterval: 50
 --- !u!4 &1114900324
 Transform:
   m_ObjectHideFlags: 0
@@ -5467,7 +5467,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 35%
+  m_text: 0%
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9060,6 +9060,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5114858897816411694, guid: ec1c83661023e2540b44fdb0d40f2d5e,
+        type: 3}
+      propertyPath: m_text
+      value: press E to interact
       objectReference: {fileID: 0}
     - target: {fileID: 6469890956604813692, guid: ec1c83661023e2540b44fdb0d40f2d5e,
         type: 3}

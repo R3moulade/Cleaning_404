@@ -33,7 +33,6 @@ public class UIManager : MonoBehaviour
     {
         // Ensure only white knob is initially active
         SetCrosshairColor(false);
-        pressEText.gameObject.SetActive(false);
     }
 
     void Update()
@@ -50,8 +49,7 @@ public class UIManager : MonoBehaviour
             {
                 if (hit.collider.CompareTag(interactiveTag))
                 {
-                    pressEText.gameObject.SetActive(true);
-                    pressEText.transform.position = transform.position + Vector3.up * 5f; // Adjust position as needed
+                    pressEText.enabled = true;
                     SetCrosshairColor(true); // Switch to yellow knob color
                     return;
                 }
@@ -83,7 +81,14 @@ public class UIManager : MonoBehaviour
 
         // If no object with the specified tag is hit, switch back to white knob color
         SetCrosshairColor(false);
-         pressEText.gameObject.SetActive(false);
+        pressEText.enabled = false;
+
+        if (Input.GetKeyDown(KeyCode.Mouse0)){
+            cleanPercentageText.enabled = true;
+        }
+        if (Input.GetKeyUp(KeyCode.Mouse0)){
+            cleanPercentageText.enabled = false;
+        }
 
     }
 
@@ -123,6 +128,21 @@ public class UIManager : MonoBehaviour
     {
         objectCleanedAnimation.Stop();
         // Get the current color of the text
+        // Color currentColor = objectCleanedText.color;
+
+        // Change the alpha of the color
+        // currentColor.a = 225f / 255f;
+
+        // Set the color of the text
+        // objectCleanedText.color = currentColor;
+        
+        objectCleanedText.text = objectiveText;
+        objectCleanedAnimation.Play();
+    }
+    public void MiddleOfScreenText(string objectiveText)
+    {
+        objectCleanedAnimation.Stop();
+        // Get the current color of the text
         Color currentColor = objectCleanedText.color;
 
         // Change the alpha of the color
@@ -132,6 +152,5 @@ public class UIManager : MonoBehaviour
         objectCleanedText.color = currentColor;
         
         objectCleanedText.text = objectiveText;
-        objectCleanedAnimation.Play();
     }
 }

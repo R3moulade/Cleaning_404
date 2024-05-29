@@ -88,7 +88,7 @@ public class ShowerCurtainController : MonoBehaviour
         yield return new WaitForSeconds(Random.Range(minInterval, maxInterval));
 
         // If the curtain is not already open, open it
-        if (isClosed)
+        if (isClosed && !GameManager.instance.objectSpawned)
         {
             ToggleCurtain();
         }

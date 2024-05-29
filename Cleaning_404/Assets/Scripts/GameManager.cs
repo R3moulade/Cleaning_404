@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
 
     void SpawnObject() {
         pentagram.GetComponent<BoxCollider>().enabled = true;
-        UIManager.instance.FadeInOutText("Make a ritual circle to banish the bathroom demon");
+        UIManager.instance.MiddleOfScreenText("Make a ritual circle to banish the bathroom demon");
     }
 
     public void SpawnPentagram(){
@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
     public void SpawnCandles(){
         candleSpawner.enabled = false;
         Instantiate(candles, candleSpawner.transform.position, Quaternion.Euler(90, 0, 0));
-        UIManager.instance.FadeInOutText("");
+        UIManager.instance.MiddleOfScreenText("");
         lightCandles.Play();
         Ending.Instance.SpiderExorcise(true);
     }
