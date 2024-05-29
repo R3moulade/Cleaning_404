@@ -7159,7 +7159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseTexture: {fileID: 2800000, guid: a4317cc5c011a3d40850dfa8fbc51af8, type: 3}
-  dirtTexture: {fileID: 2800000, guid: 66242513813a12640a3cd1d3a878f2b7, type: 3}
+  dirtTexture: {fileID: 2800000, guid: 4419143eda4e1134d97430e5ea201bd2, type: 3}
   maskTexture: {fileID: 2800000, guid: 7a408e9a5f261c84a9d30d15e7c957ef, type: 3}
   maskTextureCleaned: {fileID: 2800000, guid: 4dd130e0299af2e4296a5c8329dea275, type: 3}
   maxPercentage: 77
