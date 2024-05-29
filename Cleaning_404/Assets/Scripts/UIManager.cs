@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
-using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
@@ -19,6 +18,7 @@ public class UIManager : MonoBehaviour
     public Animation objectCleanedAnimation;
     private Vector3 originalScale;
     public TextMeshProUGUI pentagramText;
+    private float interactionDistance = 2f;
 
     private void Awake() {
         if (instance == null) {
@@ -41,9 +41,9 @@ public class UIManager : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, interactionDistance))
         {
-            Debug.DrawLine(ray.origin, hit.point, Color.red);
+            Debug.DrawLine(ray.origin, hit.point, Color.red, interactionDistance);
             // Check if the ray hits a collider with any of the specified tags
             foreach (string interactiveTag in interactiveTags)
             {
@@ -100,18 +100,27 @@ public class UIManager : MonoBehaviour
     public void DirtList(List<string> dirtObjectNames, List<string> trashObjectNames)
     {
         // Convert the list to a string and display it
-        if (dirtObjectNames.Count <= 3)
+        if (dirtObjectNames.Count == 0) {
+            dirtListText.text = "";
+        }
+        else if (dirtObjectNames.Count <= 3)
         {
             string dirtListString = string.Join("\n", dirtObjectNames);
-            dirtListText.text = dirtListString;
+            dirtListText.text = "Items to clean:\n" + dirtListString;
         }
         else {
             dirtListText.text = dirtObjectNames.Count + " items left to clean";
         }
 
-
-        string trashListString = string.Join("\n", trashObjectNames);
-        trashListText.text = trashListString;
+        if (trashObjectNames.Count == 0)
+        {
+            trashListText.text = "";
+        }
+        else
+        {
+            string trashListString = string.Join("\n", trashObjectNames);
+            trashListText.text = "Trash to pick up:\n" + trashListString;
+        }
     }
 
     public void UpdateCleanPercentage(float cleanPercentage)
@@ -127,15 +136,6 @@ public class UIManager : MonoBehaviour
     public void FadeInOutText(string objectiveText)
     {
         objectCleanedAnimation.Stop();
-        // Get the current color of the text
-        // Color currentColor = objectCleanedText.color;
-
-        // Change the alpha of the color
-        // currentColor.a = 225f / 255f;
-
-        // Set the color of the text
-        // objectCleanedText.color = currentColor;
-        
         objectCleanedText.text = objectiveText;
         objectCleanedAnimation.Play();
     }

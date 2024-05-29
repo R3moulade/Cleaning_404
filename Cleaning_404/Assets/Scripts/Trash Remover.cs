@@ -1,11 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
 public class TrashRemover : MonoBehaviour
 {
     public string trashTag;
+    public AudioSource trashSound;
+    private float interactionDistance = 2f;
 
     void Update()
     {
@@ -13,7 +14,7 @@ public class TrashRemover : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, interactionDistance))
         {
             if (hit.collider.CompareTag(trashTag)) {
                 if (Input.GetKeyDown(KeyCode.E))
@@ -28,6 +29,7 @@ public class TrashRemover : MonoBehaviour
                         Destroy(hit.collider.gameObject);
                         StartCoroutine(CountDirtNextFrame());
                     }
+                    trashSound.Play();
                 }
             }            
         }

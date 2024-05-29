@@ -5,13 +5,14 @@ public class ShowerCurtainController : MonoBehaviour
 {
     public GameObject showerCurtainOpen;  // Reference to the open state object
     public GameObject showerCurtainClosed; // Reference to the closed state object
-    public float interactionDistance = 3.0f;  // Maximum distance to interact
+    private float interactionDistance = 2f;  // Maximum distance to interact
 
     private Camera playerCamera;  // Reference to the main camera
     public bool isClosed = true;  // Tracks the current state
     public int minInterval = 30;
     public int maxInterval = 40;
     public AudioSource pullShowerCurtain;
+    private bool hasCurtainBeenOpenedOnce = false;
 
     void Start()
     {
@@ -20,8 +21,7 @@ public class ShowerCurtainController : MonoBehaviour
 
         // Get the main camera
         playerCamera = Camera.main;
-        // Start the OpenCurtainAtRandomInterval coroutine
-        StartCoroutine(OpenCurtainAtRandomInterval());
+
 
     }
 
@@ -45,6 +45,13 @@ public class ShowerCurtainController : MonoBehaviour
         UpdateCurtainState();  // Update the visuals
         //play audio source
         pullShowerCurtain.Play();
+        
+        if (!hasCurtainBeenOpenedOnce)
+        {
+            hasCurtainBeenOpenedOnce = true;
+            StartCoroutine(OpenCurtainAtRandomInterval());
+        }
+
     }
 
     // Enable/disable colliders of curtain objects based on the current state
