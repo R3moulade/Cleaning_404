@@ -13,8 +13,8 @@ public class GameManager : MonoBehaviour
     public AudioSource drawPentagram;
     public AudioSource lightCandles;
 
-    private bool objectSpawned = false;
-    
+    [HideInInspector]
+    public bool objectSpawned = false;    
     
 
     private void Awake() {

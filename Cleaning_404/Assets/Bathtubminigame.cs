@@ -12,6 +12,8 @@ public class Bathtubminigame : MonoBehaviour
     public Transform jumpscareSpider;
     public Transform bathtubSpider;
     private bool isMinigameTimerActive = false;
+    public int minInterval = 30;
+    public int maxInterval = 40;
 
 
     void Start()
@@ -22,7 +24,7 @@ public class Bathtubminigame : MonoBehaviour
     }
     void Update()
     {
-        if (!showerCurtainController.isClosed && !spiderWindup.isPlaying && !jumpscare.isPlaying && !isMinigameTimerActive)
+        if (!showerCurtainController.isClosed && !spiderWindup.isPlaying && !jumpscare.isPlaying && !isMinigameTimerActive && !GameManager.instance.objectSpawned)
         {
             StartCoroutine(StartSpiderMinigameAtRandomInterval());
         }
@@ -35,10 +37,10 @@ public class Bathtubminigame : MonoBehaviour
         while (!showerCurtainController.isClosed && !spiderWindup.isPlaying && !jumpscare.isPlaying)
         {
             // Wait for a random interval between 1 and 10 seconds
-            yield return new WaitForSeconds(Random.Range(30, 40));
+            yield return new WaitForSeconds(Random.Range(minInterval, maxInterval));
 
             // If the shower curtain is not closed, start the SpiderMinigame coroutine
-            if (!showerCurtainController.isClosed && !spiderWindup.isPlaying && !jumpscare.isPlaying)
+            if (!showerCurtainController.isClosed && !spiderWindup.isPlaying && !jumpscare.isPlaying && !GameManager.instance.objectSpawned)
             {
                 StartCoroutine(SpiderMinigame());
             }
@@ -121,11 +123,8 @@ void SomeMethod()
     // If the Cleaning script is attached to the object
     if (cleaningScript != null)
     {
-        // Create a new instance of the MaskTexture
-        Texture2D newMaskTexture = Instantiate(cleaningScript.maskTexture);
-
-        // Assign the new instance to the MaskTexture variable of the Cleaning script
-        cleaningScript.maskTexture = newMaskTexture;
+        // Reset the mask texture of the object
+        cleaningScript.ResetMaskTexture();
     }
         obj.tag = "dirty"; // Change the tag of the object to dirty
         StartCoroutine(DisplayDirtyText(obj));    

@@ -9,6 +9,8 @@ public class ShowerCurtainController : MonoBehaviour
 
     private Camera playerCamera;  // Reference to the main camera
     public bool isClosed = true;  // Tracks the current state
+    public int minInterval = 30;
+    public int maxInterval = 40;
 
     void Start()
     {
@@ -79,7 +81,7 @@ public class ShowerCurtainController : MonoBehaviour
     while (true)
     {
         // Wait for a random interval between 1 and 10 seconds
-        yield return new WaitForSeconds(Random.Range(30, 40));
+        yield return new WaitForSeconds(Random.Range(minInterval, maxInterval));
 
         // If the curtain is not already open, open it
         if (isClosed)

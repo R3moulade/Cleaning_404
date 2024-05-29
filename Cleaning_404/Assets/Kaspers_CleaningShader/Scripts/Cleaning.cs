@@ -20,6 +20,7 @@ public class Cleaning : MonoBehaviour {
     [SerializeField] private int brushSize = 100;
     [SerializeField] private int brushWidth = 100; // New variable for rectangle width
     [SerializeField] private int brushHeight = 50; // New variable for rectangle height
+    private Texture2D startMaskTexture;
 
 
     private Material myMaterial;
@@ -41,6 +42,8 @@ public class Cleaning : MonoBehaviour {
         appliedMaskTexture = CopyTexture(maskTexture);
         appliedMaskTexture.name = "AppliedDirtMask";
 
+        //Minigame texture
+        startMaskTexture = CopyTexture(maskTexture);
         // Set the textures to the material
         myMaterial.SetTexture("_MainTex", baseTexture);
         myMaterial.SetTexture("_DirtTex", dirtTexture);
@@ -53,6 +56,7 @@ public class Cleaning : MonoBehaviour {
         totalPixelCount = appliedMaskTexture.width * appliedMaskTexture.height;
         blackPixelCount = 0;
     }
+    
 
     private void Update()
     {
@@ -151,6 +155,13 @@ private void DrawOnMask(Vector2 uv)
     }
 
 }
+    public void ResetMaskTexture()
+    {
+        appliedMaskTexture = CopyTexture(startMaskTexture);
+        myMaterial.SetTexture("_DirtMask", appliedMaskTexture);
+        blackPixelCount = 0;
+        UIManager.instance.UpdateCleanPercentage(0);
+    }
     Texture2D CopyTexture(Texture2D source)
     {
         // Create a new texture
@@ -190,4 +201,5 @@ private void DrawOnMask(Vector2 uv)
         GameManager.instance.CountDirt();
 
     }
+    
 }
