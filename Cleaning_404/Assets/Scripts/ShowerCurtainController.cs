@@ -11,6 +11,7 @@ public class ShowerCurtainController : MonoBehaviour
     public bool isClosed = true;  // Tracks the current state
     public int minInterval = 30;
     public int maxInterval = 40;
+    public AudioSource pullShowerCurtain;
 
     void Start()
     {
@@ -21,6 +22,7 @@ public class ShowerCurtainController : MonoBehaviour
         playerCamera = Camera.main;
         // Start the OpenCurtainAtRandomInterval coroutine
         StartCoroutine(OpenCurtainAtRandomInterval());
+
     }
 
     // Update the curtain state based on the isClosed variable
@@ -41,6 +43,8 @@ public class ShowerCurtainController : MonoBehaviour
     {
         isClosed = !isClosed;  // Toggle the state
         UpdateCurtainState();  // Update the visuals
+        //play audio source
+        pullShowerCurtain.Play();
     }
 
     // Enable/disable colliders of curtain objects based on the current state
