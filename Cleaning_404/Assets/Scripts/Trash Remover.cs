@@ -19,7 +19,7 @@ public class TrashRemover : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E))
                 {
 
-                    if (hit.collider.gameObject.name == "dirty drain with arm")
+                    if (hit.collider.gameObject.name == "Shower drain")
                     {
                         StartCoroutine(DestroyAndCountDirtWithDelay(hit.collider.gameObject, 5.0f));
                     }

@@ -8249,7 +8249,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: bfde4d46a865cd04db0cd7749d17bb4d,
         type: 3}
       propertyPath: m_Name
-      value: dirty drain with arm
+      value: Shower drain
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: bfde4d46a865cd04db0cd7749d17bb4d,
         type: 3}
