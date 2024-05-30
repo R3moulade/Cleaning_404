@@ -20,6 +20,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI pentagramText;
     private float interactionDistance = 2f;
 
+
     private void Awake() {
         if (instance == null) {
             instance = this;
@@ -116,16 +117,20 @@ public class UIManager : MonoBehaviour
         {
             trashListText.text = "";
         }
-        else
+        else if (trashObjectNames.Count <= 6)
         {
             string trashListString = string.Join("\n", trashObjectNames);
-            trashListText.text = "Trash to pick up:\n" + trashListString;
+            trashListText.text = "Thrash to pick up:\n" + trashListString;
+        }
+        else
+        {
+            trashListText.text = trashObjectNames.Count + " trash left to pick up";
         }
     }
 
-    public void UpdateCleanPercentage(float cleanPercentage)
+    public void UpdateCleanPercentage(float cleanPercentage, string currentObject)
     {
-        cleanPercentageText.text = cleanPercentage.ToString("F0") + "%";
+        cleanPercentageText.text =  cleanPercentage.ToString("F0") + "%" + "\n" + currentObject;
     }
     public void ObjectCleaned(string objectCleanedName)
     {

@@ -145,7 +145,7 @@ private void DrawOnMask(Vector2 uv)
     appliedMaskTexture.Apply();
     int cleanTotalPercentage = (int)(((float)blackPixelCount / totalPixelCount) * 100);
     int cleanPercentage = (int)(((float)cleanTotalPercentage / maxPercentage) * 100);
-    UIManager.instance.UpdateCleanPercentage(cleanPercentage);
+    UIManager.instance.UpdateCleanPercentage(cleanPercentage, gameObject.name);
 
     Debug.Log("Black Pixel Count: " + cleanTotalPercentage + "%, " + cleanPercentage + "%");
 
@@ -160,7 +160,7 @@ private void DrawOnMask(Vector2 uv)
         appliedMaskTexture = CopyTexture(startMaskTexture);
         myMaterial.SetTexture("_DirtMask", appliedMaskTexture);
         blackPixelCount = 0;
-        UIManager.instance.UpdateCleanPercentage(0);
+        UIManager.instance.UpdateCleanPercentage(0, gameObject.name);
     }
     Texture2D CopyTexture(Texture2D source)
     {
