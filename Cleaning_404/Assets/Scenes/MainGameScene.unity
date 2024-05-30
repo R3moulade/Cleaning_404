@@ -252,9 +252,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5a505653f7d29d0429ad296ef868b603, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 241f8aca2a153b846be7db914b05ace3, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.59
+  m_Volume: 0.869
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -586,12 +586,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 879bd90dcfb26d3419002954e36d4025, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minPitch: 0.7
-  maxPitch: 1
+  bubbleParticleSystem: {fileID: 0}
+  smoothTime: 0.1
   minSpeed: 0
   maxSpeed: 5
-  maxVolume: 1
+  minPitch: 0.7
+  maxPitch: 1
   minVolume: 0
+  maxVolume: 1
 --- !u!1 &61486871
 GameObject:
   m_ObjectHideFlags: 0
@@ -3449,7 +3451,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5e9b156d4e0b9ac4babb6d4756dc43fa, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 699d52788448dab46be3f6d56c9b25f7, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -3495,7 +3497,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.23
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -7919,7 +7921,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c0e0e9bc066d256478cd6b48f48630b3, type: 3}
   - {fileID: 8300000, guid: 7b545f8cd399efa4f9336be41dc59aec, type: 3}
   - {fileID: 8300000, guid: fdb90db54866aea418d82c438de3c3ff, type: 3}
-  minTimeBetweenSounds: 30
+  - {fileID: 8300000, guid: ffbe8e3d29085914f8f1a287febb603a, type: 3}
+  - {fileID: 8300000, guid: 28f343f2411fdf84daab2cd4f26a595d, type: 3}
+  - {fileID: 8300000, guid: d32eb81dc58ab4b4da2a73099afed72e, type: 3}
+  minTimeBetweenSounds: 20
   maxTimeBetweenSounds: 200
 --- !u!82 &1520192770
 AudioSource:
@@ -11939,7 +11944,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9f62e90eb0eb4ed46b957c350d2cd440, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.592
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -11983,7 +11988,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.23
+      value: 0.938
       inSlope: 0
       outSlope: 0
       tangentMode: 0
