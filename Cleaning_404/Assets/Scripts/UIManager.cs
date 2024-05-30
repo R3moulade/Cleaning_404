@@ -103,7 +103,7 @@ public class UIManager : MonoBehaviour
         if (dirtObjectNames.Count == 0) {
             dirtListText.text = "";
         }
-        else if (dirtObjectNames.Count <= 3)
+        else if (dirtObjectNames.Count <= 6)
         {
             string dirtListString = string.Join("\n", dirtObjectNames);
             dirtListText.text = "Items to clean:\n" + dirtListString;
